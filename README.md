@@ -19,14 +19,14 @@ You can play with `algolia-Colect-frondend-middleware-js` at [netlify.app](https
 ```sh
 npm install
 ```
-# RUN LOCAl FOR DEVELOPMENT
+## Run local
 Uses Vite for local server & hot reloading
 
 ```sh
 npn run dev
 ```
 
-# BUILD DISTRIBUTION
+## Build distribution
 Uses Vite to build an ES & UMD JS library
 
 ```sh
