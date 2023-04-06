@@ -12,7 +12,7 @@ Integrate Algolia search functionality in the Colect.io brand portal frontend.
 
 ## Demo
 
-You can play with `algolia-Colect-frondend-middleware-js` at [netlify.app](https://algolia-poc.netlify.app/) 
+You can play with `algolia-Colect-frondend-middleware-js` at [netlify.app](https://algolia-poc.netlify.app/) (previous version 0.82)
 
 ## Installation
 
