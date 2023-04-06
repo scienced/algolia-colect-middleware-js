@@ -1,4 +1,4 @@
-## A simple Algolia for Colect frondend middleware library
+##  A simple frontend middleware for Algolia & Colect
 Integrate Algolia search functionality in the Colect.io brand portal frontend. 
 
 ## Features
@@ -33,7 +33,7 @@ Uses Vite to build an ES & UMD JS library
 npn run build
 ```
 
-# CDN
+## CDN
 
 ```html
 <!-- jsDelivr  -->
