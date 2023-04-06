@@ -171,10 +171,10 @@ const virtualSearchBox = connectSearchBox(() => {});
           showMoreLimit: 80,
         }),
       container =>
-      refinementList({
-        container,
+      panel({ templates: { header: 'Lifecycle' } })(
+      refinementList
+      )({ container, 
           attribute: 'lifecycle',
-          cssClasses: {checkbox: 'lala'},
         }),
   ],
   }),      
