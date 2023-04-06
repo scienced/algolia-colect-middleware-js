@@ -1,0 +1,208 @@
+@import url("https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic");
+@import url("https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css");
+
+:host {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+    --aa-search-input-height: 44px;
+    --aa-input-icon-size: 20px;
+    --aa-base-unit: 16;
+    --aa-spacing-factor: 1;
+    --aa-spacing: calc(var(--aa-base-unit)*var(--aa-spacing-factor)*1px);
+    --aa-spacing-half: calc(var(--aa-spacing)/2);
+    --aa-panel-max-height: 650px;
+    --aa-base-z-index: 9999;
+    --aa-font-size: calc(var(--aa-base-unit)*1px);
+    --aa-font-family: inherit;
+    --aa-font-weight-medium: 500;
+    --aa-font-weight-semibold: 600;
+    --aa-font-weight-bold: 700;
+    --aa-icon-size: 20px;
+    --aa-icon-stroke-width: 1.6;
+    --aa-icon-color-rgb: 0,0,0;
+    --aa-icon-color-alpha: 1;
+    --aa-action-icon-size: 50px;
+    --aa-text-color-rgb: 38,38,39;
+    --aa-text-color-alpha: 1;
+    --aa-primary-color-rgb: 62,52,211;
+    --aa-primary-color-alpha: 0.2;
+    --aa-muted-color-rgb: 128,126,163;
+    --aa-muted-color-alpha: 0.6;
+    --aa-panel-border-color-rgb: 128,126,163;
+    --aa-panel-border-color-alpha: 0.3;
+    --aa-input-border-color-rgb: 128,126,163;
+    --aa-input-border-color-alpha: 0.8;
+    --aa-background-color-rgb: 255,255,255;
+    --aa-background-color-alpha: 1;
+    --aa-input-background-color-rgb: 255,255,255;
+    --aa-input-background-color-alpha: 1;
+    --aa-selected-color-rgb: 179,173,214;
+    --aa-selected-color-alpha: 0.205;
+    --aa-description-highlight-background-color-rgb: 245,223,77;
+    --aa-description-highlight-background-color-alpha: 0.5;
+    --aa-detached-media-query: (max-width:680px);
+    --aa-detached-modal-media-query: (min-width:680px);
+    --aa-detached-modal-max-width: 680px;
+    --aa-detached-modal-max-height: 500px;
+    --aa-overlay-color-rgb: 115,114,129;
+    --aa-overlay-color-alpha: 0.4;
+    --aa-panel-shadow: 0 0 0 1px rgba(35,38,59,0.1),0 6px 16px -4px rgba(35,38,59,0.15);
+    --aa-scrollbar-width: 13px;
+    --aa-scrollbar-track-background-color-rgb: 234,234,234;
+    --aa-scrollbar-track-background-color-alpha: 1;
+    --aa-scrollbar-thumb-background-color-rgb: var(--aa-background-color-rgb);
+    --aa-scrollbar-thumb-background-color-alpha: 1
+}
+
+/* Algolia overwrites */
+.aa-Form {
+border-radius: 40px;
+}
+
+.ais-Panel-header {
+border-bottom: 0px;
+}
+
+.ais-Panel {
+  margin-top: 25px;
+}
+
+.ais-RefinementList-showMore, .ais-RefinementList-showMore:focus, .ais-ClearRefinements-button {
+      background-color: #93949c;
+      border-radius: 0px;
+}
+
+.ais-RefinementList-showMore:hover, .ais-ClearRefinements-button:hover {
+    background-color: #3b3b3e;
+}
+
+.ais-ClearRefinements-button[disabled] {
+    background-color: white;
+}
+
+.ais-RefinementList-showMore[disabled] {
+    display: none;
+}
+
+
+/* The search modal */
+      .modal {
+        all: unset;
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 900;
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content/Box */
+      .modal-content {
+        background-color: #fefefe;
+        margin: 30px auto; /* 15% from the top and centered */
+        padding: 20px;
+        border: 1px solid #888;
+        border-radius: 10px;
+        width: 93%; /* Could be more or less, depending on screen size */
+      }
+
+      /* The modal Close Button */
+      #acm-close {
+        width: 17px;
+        height: 32px;
+        opacity: 0.3;
+        cursor: pointer;
+      }
+      #acm-close:hover {
+        opacity: 1;
+      }
+  
+/* Product card design */
+        .card {
+          max-width: 300px;
+          margin: auto;
+          text-align: center;
+          font-family: arial;
+        }
+
+        .price  {
+          color: grey;
+          font-weight: 100;
+            font-size: 12px;
+        }
+
+        .card a {
+          text-decoration: none;
+        }
+
+        .card h1 {
+          font-weight: 600;
+            font-size: 16px;
+            line-height: 1.5;
+            margin: 0;
+            color: black;
+        }
+        .zoom {
+          transition: transform .2s;
+          margin: 0 auto;
+        }
+        .zoom:hover {
+            transform: scale(1.05);
+            font-size: 26px;
+            z-index: 100;
+            color: white;
+        }
+
+/* Algolia seaech results (hits) css overrides*/
+        .ais-Hits-item, .ais-InfiniteHits-item, .ais-InfiniteResults-item, .ais-Results-item {
+          margin-top: 1rem;
+          margin-left: 1rem;
+          padding: 1rem;
+          width: calc(20% - 1rem);
+          border: 1px solid #c4c8d8;
+          box-shadow: 0 2px 5px 0 #e3e5ec;
+        }
+
+      mark {
+        background-color: #e8033530;
+      }
+
+     .ais-QueryRuleCustomData {
+       max-height: 343px;
+      overflow: hidden;
+      /* width: 100%; */
+      margin-bottom: 1rem;
+      }
+
+    .ais-QueryRuleCustomData img {
+    width: 100%;
+    } 
+
+/* SIDE BAR CSS */
+    .with-sidebar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .with-sidebar > :first-child {
+      flex-grow: 1;
+    }
+
+    .with-sidebar > :last-child {
+      flex-basis: 0;
+      flex-grow: 999;
+      min-inline-size: 50%;
+    }
+
+
+
+

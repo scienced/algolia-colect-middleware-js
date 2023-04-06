@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Algolia-Colect-frontend-middleware</title>
+  </head>
+  <body>
+   
+Original Colect V2 search field:
+<a class="search_button hide-lg-down nav--link nav-bar reset-scroll">
+        
+<!-- START-CONTENTBLOCK:search -->
+<form id="_sf_158965797" class="w3-container a4f-form a4f-searchform" method="GET" action="/webstore/v2/search">
+   <div class="a4f-searchquery-container">
+      <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" name="q" value="" class="w3-input w3-border a4f-searchquery ui-autocomplete-input" autocomplete="off" placeholder="search">
+   </div>
+   <div class="a4f-searchbutton-container">
+      <button class="a4f-googlematerial a4f-searchbutton" type="submit" style="display: none;"></button>
+   </div>
+</form>
+<script type="text/javascript">
+/*<![CDATA[*/
+
+   $(function() {
+      $('.a4f-searchquery').autocomplete({
+         appendTo: '#_sf_158965797',
+         minLength: 3,
+         delay: 500,
+         source: '/webstore/v2/categories/?9-1.IBehaviorListener.0-',
+         select: function(event,ui) { event.preventDefault(); window.location.href=ui.item.link; },
+         html: true
+      }).focus(function() { $(this).autocomplete('search',$(this).val()); });
+   });
+
+/*]]>*/
+</script>
+
+
+      </a>
+
+
+<br>
+<hr>
+
+     <p><strong>Algolia-Colect-frontend-middleware </strong>Version 0.4.1</p>
+    Pending features:
+    <ul> 
+      
+       <h3>Basics</h3>
+      <li>override css mechanisme autocomplete</li>
+      <li>Build Github</li>
+      <li>Build distribution pipeline pipeline, including Jsdelivr</li>
+      <li>Write markdown documentation</li>
+      <h3>Search tweaks</h3>
+        <li>Add insights into Vite module </li>
+      <li>Add fixed Algolia links (low prio)</li>
+
+
+     </ul> 
+    </div>
+
+     <!-- when using the UDM module
+     <script src="./dist/algolia_colect_middelware.umd.js"></script> -->
+
+     <!-- styling only needed for the Algolia Autocomplete pop-up, which lives outside of the shadow dom (for now) -->
+     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic">
+    <style>
+    .aa-Panel {
+      z-index: 1000;
+    }
+    .aa-ItemContentTitle {
+       font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      font-weight: 400;
+      color-scheme: light dark;
+    }
+    </style>
+
+    <script type="module">
+     import Search from './main.js';
+     const container = document.querySelector('.a4f-searchquery-container')
+     const options = {
+      customerCollection: "PL_TriumphTEST",
+      customerLanguage: "EN",
+      customerId: "434783",
+      algoliaApplicationId: "E8HZJUFDQU",
+      algoliaApiKey: "2eab4588c570c21e4ef0e93c7483c45a",
+    }
+    const acm = new Search(container, options)
+    </script>
+
+
+  </body>
+</html>

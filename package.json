@@ -1,0 +1,32 @@
+{
+  "name": "algolia-colect-middleware",
+  "private": true,
+  "version": "0.4.1",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/algolia_colect_middelware.umd.js",
+  "module": "./dist/algolia_colect_middelware.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/algolia_colect_middelware.es.js",
+      "require": "./dist/algolia_colect_middelware.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "@algolia/autocomplete-js": "^1.8.3",
+    "@algolia/autocomplete-plugin-query-suggestions": "^1.8.3",
+    "@algolia/autocomplete-plugin-recent-searches": "^1.8.3",
+    "algoliasearch": "^4.15.0",
+    "instantsearch.js": "^4.52.0",
+    "search-insights": "^2.3.0"
+  }
+}
