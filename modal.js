@@ -6,7 +6,7 @@ export function setupModal(container, searchFieldId) {
       <link rel="stylesheet" type="text/css" href="/style.css">
       
       <!-- search field -->
-      <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Searchie" autocomplete="off">
+      <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Search for products" autocomplete="off">
       <!-- The Modal -->
       <div id="acm-modal" class="modal">
         <!-- Modal content -->

@@ -12,7 +12,7 @@ Integrate Algolia search functionality in the Colect.io brand portal frontend.
 
 ## Demo
 
-You can play with `algolia-Colect-frondend-middleware-js` at [netlify.app](https://algolia-poc.netlify.app/) (previous version 0.82)
+You can play with `algolia-Colect-middleware-js` at [netlify.app](https://algolia-poc.netlify.app/) (previous version 0.82)
 
 ## Installation
 
@@ -33,11 +33,11 @@ Uses Vite to build an ES & UMD JS library
 npn run build
 ```
 
-## CDN
+## CDN (to be finalised)
 
 ```html
 <!-- jsDelivr  -->
- <script src="https://cdn.jsdelivr.net/gh/scienced/acm/dist/algolia_colect_middleware.umd.js"></script> -->
+ <script src="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js/dist/algolia_colect_middelware.umd.js"></script> -->
 
 <!-- Usage -->
  <script >
