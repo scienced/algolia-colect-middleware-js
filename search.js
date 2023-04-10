@@ -83,8 +83,8 @@ const virtualSearchBox = connectSearchBox(() => {});
 
              <div>
              <h1>${hit._highlightResult.title.value}</h1>            
-              <p class="price">${hit.productID} - ${hit.colorCode}</p>
-              <p class="price">WSP: ${hit.currencyCode} ${hit.wholesalePrice} - RSP: ${hit.currencyCode} ${hit.retailPrice}</p>
+              <p class="description">${hit.productID} - ${hit.colorCode}</p>
+              <p class="price">WSP: ${hit.currencyCode} ${hit.wholesalePrice} <br /> RSP: ${hit.currencyCode} ${hit.retailPrice}</p>
             </div>
             </a>
           `,
@@ -182,8 +182,6 @@ const virtualSearchBox = connectSearchBox(() => {});
 ]);
 
 search.start();
-
-
 
 // Set the InstantSearch index UI state from external events.
       function setInstantSearchUiState(indexUiState) {

@@ -1,8 +1,6 @@
-
 export function setupModal(container, searchFieldId) {
-
-      //build modal in dom
-      const modalHtml = `
+  //build modal in dom
+  const modalHtml = `
       <link rel="stylesheet" type="text/css" href="/style.css">
       
       <!-- search field -->
@@ -39,40 +37,39 @@ export function setupModal(container, searchFieldId) {
           </div>
         </div>
       </div>
-      `
-     // searchFieldId.insertAdjacentHTML("beforeend", modalHtml);
+      `;
+  // searchFieldId.insertAdjacentHTML("beforeend", modalHtml);
 
-    var div = document.querySelector('.a4f-searchquery-container');
-    var shadowRoot = div.attachShadow({mode: 'open'});
-    shadowRoot.innerHTML = modalHtml;
+  var div = document.querySelector('.a4f-searchquery-container');
+  var shadowRoot = div.attachShadow({ mode: 'open' });
+  shadowRoot.innerHTML = modalHtml;
 
-    //document.querySelector('.a4f-searchquery-container').innerHTML = modalHtml
+  //document.querySelector('.a4f-searchquery-container').innerHTML = modalHtml
 
   // Get the modal
-      var modal = shadowRoot.getElementById("acm-modal");
+  var modal = shadowRoot.getElementById('acm-modal');
 
-      // input field
-       var input = shadowRoot.getElementById("acm-searchfield");
-       input.onfocus = function() {
-        modal.style.display = "block";
-        document.body.style.overflow = 'hidden';
-        document.getElementsByTagName('html')[0].style.overflow = "hidden";
-      }
+  // input field
+  var input = shadowRoot.getElementById('acm-searchfield');
+  input.onfocus = function () {
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+  };
 
-      // Get the <span> element that closes the modal
-      var span = shadowRoot.getElementById("acm-close");
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-        document.body.style.overflow = 'scroll';
-        document.getElementsByTagName('html')[0].style.overflow = "scroll";
+  // Get the <span> element that closes the modal
+  var span = shadowRoot.getElementById('acm-close');
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'scroll';
+    document.getElementsByTagName('html')[0].style.overflow = 'scroll';
+  };
 
-      }
-
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = 'none';
+    }
+  };
 }
