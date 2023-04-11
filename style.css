@@ -58,7 +58,9 @@
   --aa-scrollbar-thumb-background-color-alpha: 1;
   --first-image: block;
   --second-image: none;
-  --primary-color: #3e34d3;
+  --primary-color: #000;
+  --primary-color-contrast: #fff;
+
 }
 
 /* Algolia overwrites */
@@ -77,20 +79,27 @@
 .ais-RefinementList-showMore,
 .ais-RefinementList-showMore:focus,
 .ais-ClearRefinements-button {
-  background-color: #93949c;
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color-contrast);
   border-radius: 0px;
+  color: #fff;
+  transition: all .2s ease;
 }
 
 .ais-RefinementList-showMore:hover,
 .ais-ClearRefinements-button:hover {
-  background-color: #3b3b3e;
+  background-color: var(--primary-color-contrast);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  transition: all .2s ease;
 }
 
-.ais-ClearRefinements-button[disabled] {
+.ais-ClearRefinements-button[disabled], .ais-RefinementList-showMore[disabled]:hover {
   background-color: white;
+   display: none;
 }
 
-.ais-RefinementList-showMore[disabled] {
+.ais-RefinementList-showMore[disabled], .ais-RefinementList-showMore[disabled]:hover {
   display: none;
 }
 
@@ -185,7 +194,7 @@ mark {
 .with-sidebar {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 30px;
 }
 
 .with-sidebar > :first-child {

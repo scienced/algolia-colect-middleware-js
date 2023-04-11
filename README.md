@@ -55,13 +55,13 @@ npn run build
 
 ## Documentation
 
-The contatiner determins where the search field will be placed. Provide a id (#placeholder) or class (.placeholder). 
+The contatiner determins where the search field will be placed. Provide an id (#placeholder) or class (.placeholder). 
 
 ### Options
 
 | Property | required | explained |
 | -------- | ------- | --------- |
-| `customerCollection`    | yes  | the exact name of the Algolia collection |
+| `customerCollection`    | yes  | the exact name of the Algolia index |
 | `customerLanguage`    | no  | language of logged in user (optional) |
 | `customerId`    | no  | logged in user identification (optional) |
 | `algoliaApplicationId`    | yes | Algolia unique application identifier [link](https://www.algolia.com/account/api-keys/all) |  

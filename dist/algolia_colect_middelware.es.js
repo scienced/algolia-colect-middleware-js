@@ -3,7 +3,7 @@ function Uf(e, t) {
       <link rel="stylesheet" type="text/css" href="/style.css">
       
       <!-- search field -->
-      <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Searchie" autocomplete="off">
+      <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Search for products" autocomplete="off">
       <!-- The Modal -->
       <div id="acm-modal" class="modal">
         <!-- Modal content -->
@@ -58,7 +58,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
     Ii = e;
   }
 };
-/*! algoliasearch.umd.js | 4.15.0 | © Algolia, inc. | https://github.com/algolia/algoliasearch-client-javascript */
+/*! algoliasearch.umd.js | 4.17.0 | © Algolia, inc. | https://github.com/algolia/algoliasearch-client-javascript */
 (function(e, t) {
   (function(r, n) {
     e.exports = n();
@@ -307,7 +307,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
     function w(g) {
       return typeof g == "string" ? { protocol: "https", url: g, accept: _.Any } : { protocol: g.protocol || "https", url: g.url, accept: g.accept || _.Any };
     }
-    var R = "DELETE", j = "GET", E = "POST", U = "PUT";
+    var R = "DELETE", j = "GET", E = "POST", B = "PUT";
     function ee(g, y) {
       return Promise.all(y.map(function(b) {
         return g.get(b, function() {
@@ -331,22 +331,22 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       });
     }
     function je(g, y, b, S) {
-      var I = [], C = function(V, te) {
-        if (!(V.method === j || V.data === void 0 && te.data === void 0)) {
-          var Y = Array.isArray(V.data) ? V.data : i(i({}, V.data), te.data);
-          return JSON.stringify(Y);
+      var I = [], C = function(Q, te) {
+        if (!(Q.method === j || Q.data === void 0 && te.data === void 0)) {
+          var X = Array.isArray(Q.data) ? Q.data : i(i({}, Q.data), te.data);
+          return JSON.stringify(X);
         }
-      }(b, S), F = function(V, te) {
-        var Y = i(i({}, V.headers), te.headers), ae = {};
-        return Object.keys(Y).forEach(function(ce) {
-          var De = Y[ce];
+      }(b, S), F = function(Q, te) {
+        var X = i(i({}, Q.headers), te.headers), ae = {};
+        return Object.keys(X).forEach(function(ce) {
+          var De = X[ce];
           ae[ce.toLowerCase()] = De;
         }), ae;
-      }(g, S), N = b.method, D = b.method !== j ? {} : i(i({}, b.data), S.data), M = i(i(i({ "x-algolia-agent": g.userAgent.value }, g.queryParameters), D), S.queryParameters), W = 0, z = function V(te, Y) {
+      }(g, S), N = b.method, D = b.method !== j ? {} : i(i({}, b.data), S.data), M = i(i(i({ "x-algolia-agent": g.userAgent.value }, g.queryParameters), D), S.queryParameters), W = 0, z = function Q(te, X) {
         var ae = te.pop();
         if (ae === void 0)
-          throw { name: "RetryError", message: "Unreachable hosts - your application id may be incorrect. If the error persists, contact support@algolia.com.", transporterStackTrace: B(I) };
-        var ce = { data: C, headers: F, method: N, url: oe(ae, b.path, M), connectTimeout: Y(W, g.timeouts.connect), responseTimeout: Y(W, S.timeout) }, De = function($e) {
+          throw { name: "RetryError", message: "Unreachable hosts - your application id may be incorrect. If the error persists, contact support@algolia.com.", transporterStackTrace: V(I) };
+        var ce = { data: C, headers: F, method: N, url: oe(ae, b.path, M), connectTimeout: X(W, g.timeouts.connect), responseTimeout: X(W, S.timeout) }, De = function($e) {
           var Se = { request: ce, response: $e, host: ae, triesLeft: te.length };
           return I.push(Se), Se;
         }, sr = { onSuccess: function($e) {
@@ -354,59 +354,59 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
             try {
               return JSON.parse(Se.content);
             } catch (yt) {
-              throw function(nt, Nt) {
-                return { name: "DeserializationError", message: nt, response: Nt };
+              throw function(it, Nt) {
+                return { name: "DeserializationError", message: it, response: Nt };
               }(yt.message, Se);
             }
           }($e);
         }, onRetry: function($e) {
           var Se = De($e);
           return $e.isTimedOut && W++, Promise.all([g.logger.info("Retryable failure", Z(Se)), g.hostsCache.set(ae, A(ae, $e.isTimedOut ? x : $))]).then(function() {
-            return V(te, Y);
+            return Q(te, X);
           });
         }, onFail: function($e) {
           throw De($e), function(Se, yt) {
-            var nt = Se.content, Nt = Se.status, ur = nt;
+            var it = Se.content, Nt = Se.status, ur = it;
             try {
-              ur = JSON.parse(nt).message;
+              ur = JSON.parse(it).message;
             } catch {
             }
             return function(ln, ui, kf) {
               return { name: "ApiError", message: ln, status: ui, transporterStackTrace: kf };
             }(ur, Nt, yt);
-          }($e, B(I));
+          }($e, V(I));
         } };
         return g.requester.send(ce).then(function($e) {
           return function(Se, yt) {
-            return function(nt) {
-              var Nt = nt.status;
-              return nt.isTimedOut || function(ur) {
+            return function(it) {
+              var Nt = it.status;
+              return it.isTimedOut || function(ur) {
                 var ln = ur.isTimedOut, ui = ur.status;
                 return !ln && ~~ui == 0;
-              }(nt) || ~~(Nt / 100) != 2 && ~~(Nt / 100) != 4;
+              }(it) || ~~(Nt / 100) != 2 && ~~(Nt / 100) != 4;
             }(Se) ? yt.onRetry(Se) : ~~(Se.status / 100) == 2 ? yt.onSuccess(Se) : yt.onFail(Se);
           }($e, sr);
         });
       };
-      return ee(g.hostsCache, y).then(function(V) {
-        return z(s(V.statelessHosts).reverse(), V.getTimeout);
+      return ee(g.hostsCache, y).then(function(Q) {
+        return z(s(Q.statelessHosts).reverse(), Q.getTimeout);
       });
     }
     function G(g) {
       var y = g.hostsCache, b = g.logger, S = g.requester, I = g.requestsCache, C = g.responsesCache, F = g.timeouts, N = g.userAgent, D = g.hosts, M = g.queryParameters, W = { hostsCache: y, logger: b, requester: S, requestsCache: I, responsesCache: C, timeouts: F, userAgent: N, headers: g.headers, queryParameters: M, hosts: D.map(function(z) {
         return w(z);
-      }), read: function(z, V) {
-        var te = P(V, W.timeouts.read), Y = function() {
+      }), read: function(z, Q) {
+        var te = P(Q, W.timeouts.read), X = function() {
           return je(W, W.hosts.filter(function(ce) {
             return (ce.accept & _.Read) != 0;
           }), z, te);
         };
         if ((te.cacheable !== void 0 ? te.cacheable : z.cacheable) !== !0)
-          return Y();
+          return X();
         var ae = { request: z, mappedRequestOptions: te, transporter: { queryParameters: W.queryParameters, headers: W.headers } };
         return W.responsesCache.get(ae, function() {
           return W.requestsCache.get(ae, function() {
-            return W.requestsCache.set(ae, Y()).then(function(ce) {
+            return W.requestsCache.set(ae, X()).then(function(ce) {
               return Promise.all([W.requestsCache.delete(ae), ce]);
             }, function(ce) {
               return Promise.all([W.requestsCache.delete(ae), Promise.reject(ce)]);
@@ -418,10 +418,10 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         }, { miss: function(ce) {
           return W.responsesCache.set(ae, ce);
         } });
-      }, write: function(z, V) {
+      }, write: function(z, Q) {
         return je(W, W.hosts.filter(function(te) {
           return (te.accept & _.Write) != 0;
-        }), z, P(V, W.timeouts.write));
+        }), z, P(Q, W.timeouts.write));
       } };
       return W;
     }
@@ -442,7 +442,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         var b;
       }).join("&");
     }
-    function B(g) {
+    function V(g) {
       return g.map(function(y) {
         return Z(y);
       });
@@ -451,7 +451,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       var y = g.request.headers["x-algolia-api-key"] ? { "x-algolia-api-key": "*****" } : {};
       return i(i({}, g), {}, { request: i(i({}, g.request), {}, { headers: i(i({}, g.request.headers), y) }) });
     }
-    var K = function(g) {
+    var U = function(g) {
       return function(y, b) {
         return g.transporter.write({ method: E, path: "2/abtests", data: y }, b);
       };
@@ -685,23 +685,23 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       };
     }, lf = function(g) {
       return function(y, b) {
-        return f(g.transporter.write({ method: U, path: "/1/dictionaries/*/settings", data: y }, b), function(S, I) {
+        return f(g.transporter.write({ method: B, path: "/1/dictionaries/*/settings", data: y }, b), function(S, I) {
           return At(g)(S.taskID, I);
         });
       };
     }, ff = function(g) {
       return function(y, b) {
         var S = Object.assign({}, b), I = b || {}, C = I.queryParameters, F = a(I, ["queryParameters"]), N = C ? { queryParameters: C } : {}, D = ["acl", "indexes", "referers", "restrictSources", "queryParameters", "description", "maxQueriesPerIPPerHour", "maxHitsPerQuery"];
-        return f(g.transporter.write({ method: U, path: h("1/keys/%s", y), data: N }, F), function(M, W) {
+        return f(g.transporter.write({ method: B, path: h("1/keys/%s", y), data: N }, F), function(M, W) {
           return d(function(z) {
-            return ar(g)(y, W).then(function(V) {
+            return ar(g)(y, W).then(function(Q) {
               return function(te) {
-                return Object.keys(S).filter(function(Y) {
-                  return D.indexOf(Y) !== -1;
-                }).every(function(Y) {
-                  return te[Y] === S[Y];
+                return Object.keys(S).filter(function(X) {
+                  return D.indexOf(X) !== -1;
+                }).every(function(X) {
+                  return te[X] === S[X];
                 });
-              }(V) ? Promise.resolve() : z();
+              }(Q) ? Promise.resolve() : z();
             });
           });
         });
@@ -761,10 +761,10 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
           var M, W = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : 0, z = [];
           for (M = W; M < y.length && (z.push(y[M]), z.length !== (C || 1e3)); M++)
             ;
-          return z.length === 0 ? Promise.resolve(N) : Ba(g)(z.map(function(V) {
-            return { action: b, body: V };
-          }), F).then(function(V) {
-            return N.objectIDs = N.objectIDs.concat(V.objectIDs), N.taskIDs.push(V.taskID), M++, D(M);
+          return z.length === 0 ? Promise.resolve(N) : Ba(g)(z.map(function(Q) {
+            return { action: b, body: Q };
+          }), F).then(function(Q) {
+            return N.objectIDs = N.objectIDs.concat(Q.objectIDs), N.taskIDs.push(Q.taskID), M++, D(M);
           });
         }(), function(D, M) {
           return Promise.all(D.taskIDs.map(function(W) {
@@ -853,9 +853,9 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         return function D() {
           return za(g)(I || "", i(i({}, F), {}, { page: N })).then(function(M) {
             for (var W = 0, z = Object.entries(M.hits); W < z.length; W++) {
-              var V = o(z[W], 2), te = V[0], Y = V[1];
-              if (y(Y))
-                return { object: Y, position: parseInt(te, 10), page: N };
+              var Q = o(z[W], 2), te = Q[0], X = Q[1];
+              if (y(X))
+                return { object: X, position: parseInt(te, 10), page: N };
             }
             if (N++, C === !1 || N >= M.nbPages)
               throw { name: "ObjectNotFoundError", message: "Object not found." };
@@ -910,24 +910,24 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       };
     }, Af = function(g) {
       return function(y, b) {
-        var S = b || {}, I = S.safe, C = S.autoGenerateObjectIDIfNotExist, F = S.batchSize, N = a(S, ["safe", "autoGenerateObjectIDIfNotExist", "batchSize"]), D = function(Y, ae, ce, De) {
-          return f(g.transporter.write({ method: E, path: h("1/indexes/%s/operation", Y), data: { operation: ce, destination: ae } }, De), function(sr, $e) {
+        var S = b || {}, I = S.safe, C = S.autoGenerateObjectIDIfNotExist, F = S.batchSize, N = a(S, ["safe", "autoGenerateObjectIDIfNotExist", "batchSize"]), D = function(X, ae, ce, De) {
+          return f(g.transporter.write({ method: E, path: h("1/indexes/%s/operation", X), data: { operation: ce, destination: ae } }, De), function(sr, $e) {
             return pe(g)(sr.taskID, $e);
           });
-        }, M = Math.random().toString(36).substring(7), W = "".concat(g.indexName, "_tmp_").concat(M), z = ii({ appId: g.appId, transporter: g.transporter, indexName: W }), V = [], te = D(g.indexName, W, "copy", i(i({}, N), {}, { scope: ["settings", "synonyms", "rules"] }));
-        return V.push(te), f((I ? te.wait(N) : te).then(function() {
-          var Y = z(y, i(i({}, N), {}, { autoGenerateObjectIDIfNotExist: C, batchSize: F }));
-          return V.push(Y), I ? Y.wait(N) : Y;
+        }, M = Math.random().toString(36).substring(7), W = "".concat(g.indexName, "_tmp_").concat(M), z = ii({ appId: g.appId, transporter: g.transporter, indexName: W }), Q = [], te = D(g.indexName, W, "copy", i(i({}, N), {}, { scope: ["settings", "synonyms", "rules"] }));
+        return Q.push(te), f((I ? te.wait(N) : te).then(function() {
+          var X = z(y, i(i({}, N), {}, { autoGenerateObjectIDIfNotExist: C, batchSize: F }));
+          return Q.push(X), I ? X.wait(N) : X;
         }).then(function() {
-          var Y = D(W, g.indexName, "move", N);
-          return V.push(Y), I ? Y.wait(N) : Y;
+          var X = D(W, g.indexName, "move", N);
+          return Q.push(X), I ? X.wait(N) : X;
         }).then(function() {
-          return Promise.all(V);
-        }).then(function(Y) {
-          var ae = o(Y, 3), ce = ae[0], De = ae[1], sr = ae[2];
+          return Promise.all(Q);
+        }).then(function(X) {
+          var ae = o(X, 3), ce = ae[0], De = ae[1], sr = ae[2];
           return { objectIDs: De.objectIDs, taskIDs: [ce.taskID].concat(s(De.taskIDs), [sr.taskID]) };
-        }), function(Y, ae) {
-          return Promise.all(V.map(function(ce) {
+        }), function(X, ae) {
+          return Promise.all(Q.map(function(ce) {
             return ce.wait(ae);
           }));
         });
@@ -957,8 +957,8 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
             for (var W, z = y[Symbol.iterator](); !(N = (W = z.next()).done); N = !0)
               if (W.value.objectID === void 0)
                 return f(Promise.reject({ name: "MissingObjectIDError", message: "All objects must have an unique objectID (like a primary key) to be valid. Algolia is also able to generate objectIDs automatically but *it's not recommended*. To do it, use the `{'autoGenerateObjectIDIfNotExist': true}` option." }));
-          } catch (V) {
-            D = !0, M = V;
+          } catch (Q) {
+            D = !0, M = Q;
           } finally {
             try {
               N || z.return == null || z.return();
@@ -1011,7 +1011,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
     }, qf = function(g) {
       return function(y, b) {
         var S = b || {}, I = S.forwardToReplicas, C = P(a(S, ["forwardToReplicas"]));
-        return I && (C.queryParameters.forwardToReplicas = 1), f(g.transporter.write({ method: U, path: h("1/indexes/%s/settings", g.indexName), data: y }, C), function(F, N) {
+        return I && (C.queryParameters.forwardToReplicas = 1), f(g.transporter.write({ method: B, path: h("1/indexes/%s/settings", g.indexName), data: y }, C), function(F, N) {
           return pe(g)(F.taskID, N);
         });
       };
@@ -1035,17 +1035,17 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
           M.open(N.method, N.url, !0), Object.keys(N.headers).forEach(function(te) {
             return M.setRequestHeader(te, N.headers[te]);
           });
-          var W, z = function(te, Y) {
+          var W, z = function(te, X) {
             return setTimeout(function() {
-              M.abort(), D({ status: 0, content: Y, isTimedOut: !0 });
+              M.abort(), D({ status: 0, content: X, isTimedOut: !0 });
             }, 1e3 * te);
-          }, V = z(N.connectTimeout, "Connection timeout");
+          }, Q = z(N.connectTimeout, "Connection timeout");
           M.onreadystatechange = function() {
-            M.readyState > M.OPENED && W === void 0 && (clearTimeout(V), W = z(N.responseTimeout, "Socket timeout"));
+            M.readyState > M.OPENED && W === void 0 && (clearTimeout(Q), W = z(N.responseTimeout, "Socket timeout"));
           }, M.onerror = function() {
-            M.status === 0 && (clearTimeout(V), clearTimeout(W), D({ content: M.responseText || "Network request failed", status: M.status, isTimedOut: !1 }));
+            M.status === 0 && (clearTimeout(Q), clearTimeout(W), D({ content: M.responseText || "Network request failed", status: M.status, isTimedOut: !1 }));
           }, M.onload = function() {
-            clearTimeout(V), clearTimeout(W), D({ content: M.responseText, status: M.status, isTimedOut: !1 });
+            clearTimeout(Q), clearTimeout(W), D({ content: M.responseText, status: M.status, isTimedOut: !1 });
           }, M.send(N.data);
         });
       } }, logger: (S = Mf, { debug: function(N, D) {
@@ -1054,7 +1054,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         return Wf >= S && console.info(N, D), Promise.resolve();
       }, error: function(N, D) {
         return console.error(N, D), Promise.resolve();
-      } }), responsesCache: l(), requestsCache: l({ serializable: !1 }), hostsCache: c({ caches: [u({ key: "".concat("4.15.0", "-").concat(g) }), l()] }), userAgent: Le("4.15.0").add({ segment: "Browser" }) }, C = i(i({}, I), b), F = function() {
+      } }), responsesCache: l(), requestsCache: l({ serializable: !1 }), hostsCache: c({ caches: [u({ key: "".concat("4.17.0", "-").concat(g) }), l()] }), userAgent: Le("4.17.0").add({ segment: "Browser" }) }, C = i(i({}, I), b), F = function() {
         return function(N) {
           return function(D) {
             var M = D.region || "us", W = p(O.WithinHeaders, D.appId, D.apiKey), z = G(i(i({ hosts: [{ url: "personalization.".concat(M, ".algolia.com") }] }, D), {}, { headers: i(i(i({}, W.headers()), { "content-type": "application/json" }), D.headers), queryParameters: i(i({}, W.queryParameters()), D.queryParameters) }));
@@ -1064,8 +1064,8 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
       };
       return function(N) {
         var D = N.appId, M = p(N.authMode !== void 0 ? N.authMode : O.WithinHeaders, D, N.apiKey), W = G(i(i({ hosts: [{ url: "".concat(D, "-dsn.algolia.net"), accept: _.Read }, { url: "".concat(D, ".algolia.net"), accept: _.Write }].concat(m([{ url: "".concat(D, "-1.algolianet.com") }, { url: "".concat(D, "-2.algolianet.com") }, { url: "".concat(D, "-3.algolianet.com") }])) }, N), {}, { headers: i(i(i({}, M.headers()), { "content-type": "application/x-www-form-urlencoded" }), N.headers), queryParameters: i(i({}, M.queryParameters()), N.queryParameters) }));
-        return v({ transporter: W, appId: D, addAlgoliaAgent: function(z, V) {
-          W.userAgent.add({ segment: z, version: V });
+        return v({ transporter: W, appId: D, addAlgoliaAgent: function(z, Q) {
+          W.userAgent.add({ segment: z, version: Q });
         }, clearCache: function() {
           return Promise.all([W.requestsCache.clear(), W.responsesCache.clear()]).then(function() {
           });
@@ -1079,7 +1079,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
           return function(D) {
             var M = D.region || "us", W = p(O.WithinHeaders, D.appId, D.apiKey), z = G(i(i({ hosts: [{ url: "analytics.".concat(M, ".algolia.com") }] }, D), {}, { headers: i(i(i({}, W.headers()), { "content-type": "application/json" }), D.headers), queryParameters: i(i({}, W.queryParameters()), D.queryParameters) }));
             return v({ appId: D.appId, transporter: z }, D.methods);
-          }(i(i(i({}, I), N), {}, { methods: { addABTest: K, getABTest: ge, getABTests: fe, stopABTest: Ee, deleteABTest: Te } }));
+          }(i(i(i({}, I), N), {}, { methods: { addABTest: U, getABTest: ge, getABTests: fe, stopABTest: Ee, deleteABTest: Te } }));
         };
       }, initPersonalization: F, initRecommendation: function() {
         return function(N) {
@@ -1087,7 +1087,7 @@ var Bf = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : t
         };
       } } }));
     }
-    return Xa.version = "4.15.0", Xa;
+    return Xa.version = "4.17.0", Xa;
   });
 })(Vf);
 const Lu = Ii;
@@ -1104,7 +1104,7 @@ function ue() {
 }
 var ht = function(t, r) {
   return t;
-}, ci = ue, X = ue;
+}, ci = ue, Y = ue;
 process.env.NODE_ENV === "development" && (ci = function(t) {
   console.warn("[InstantSearch.js]: ".concat(t.trim()));
 }, ht = function(t, r) {
@@ -1112,12 +1112,12 @@ process.env.NODE_ENV === "development" && (ci = function(t) {
   return function() {
     return n || (n = !0, process.env.NODE_ENV === "development" && ci(r)), t.apply(void 0, arguments);
   };
-}, X = function(t, r) {
+}, Y = function(t, r) {
   if (!t) {
-    var n = X.cache[r];
-    n || (X.cache[r] = !0, process.env.NODE_ENV === "development" && ci(r));
+    var n = Y.cache[r];
+    n || (Y.cache[r] = !0, process.env.NODE_ENV === "development" && ci(r));
   }
-}, X.cache = {});
+}, Y.cache = {});
 var Kf = Object.keys;
 function zf(e) {
   return Yf(e) || Gf(e) || Wu(e) || Jf();
@@ -1273,7 +1273,7 @@ function Mu(e) {
       })
     }]), a;
   }, []);
-  process.env.NODE_ENV === "development" && X(i.length === 0, 'The UI state for the index "'.concat(t.getIndexId(), '" is not consistent with the widgets mounted.\n\nThis can happen when the UI state is specified via `initialUiState`, `routing` or `setUiState` but that the widgets responsible for this state were not added. This results in those query parameters not being sent to the API.\n\nTo fully reflect the state, some widgets need to be added to the index "').concat(t.getIndexId(), `":
+  process.env.NODE_ENV === "development" && Y(i.length === 0, 'The UI state for the index "'.concat(t.getIndexId(), '" is not consistent with the widgets mounted.\n\nThis can happen when the UI state is specified via `initialUiState`, `routing` or `setUiState` but that the widgets responsible for this state were not added. This results in those query parameters not being sent to the API.\n\nTo fully reflect the state, some widgets need to be added to the index "').concat(t.getIndexId(), `":
 
 `).concat(i.map(function(a) {
     var o, s = cr(a, 2), u = s[0], c = s[1].widgets;
@@ -1743,7 +1743,7 @@ function _p(e, t) {
   return -1;
 }
 function jp(e) {
-  return e instanceof HTMLElement || Boolean(e) && e.nodeType > 0;
+  return e instanceof HTMLElement || !!e && e.nodeType > 0;
 }
 function gt(e) {
   var t = typeof e == "string", r = t ? document.querySelector(e) : e;
@@ -2254,7 +2254,7 @@ function nc(e) {
     });
   });
 }
-function tt(e) {
+function rt(e) {
   var t = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {
     fallback: function() {
     }
@@ -2269,7 +2269,7 @@ function Gn(e) {
 var nd = Ne("Highlight");
 function ic(e) {
   var t = e.attribute, r = e.highlightedTagName, n = r === void 0 ? "mark" : r, i = e.hit, a = e.cssClasses, o = a === void 0 ? {} : a, s = vt(i._highlightResult, t);
-  process.env.NODE_ENV === "development" && X(s, 'Could not enable highlight for "'.concat(t, `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(s, 'Could not enable highlight for "'.concat(t, `", will display an empty string.
 Please check whether this attribute exists and is either searchable or specified in \`attributesToHighlight\`.
 
 See: https://alg.li/highlighting
@@ -2282,7 +2282,7 @@ See: https://alg.li/highlighting
 var id = Ne("ReverseHighlight");
 function ac(e) {
   var t = e.attribute, r = e.highlightedTagName, n = r === void 0 ? "mark" : r, i = e.hit, a = e.cssClasses, o = a === void 0 ? {} : a, s = vt(i._highlightResult, t);
-  process.env.NODE_ENV === "development" && X(s, 'Could not enable reverse highlight for "'.concat(t, `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(s, 'Could not enable reverse highlight for "'.concat(t, `", will display an empty string.
 Please check whether this attribute exists and is either searchable or specified in \`attributesToHighlight\`.
 
 See: https://alg.li/highlighting
@@ -2295,7 +2295,7 @@ See: https://alg.li/highlighting
 var ad = Ne("Snippet");
 function oc(e) {
   var t = e.attribute, r = e.highlightedTagName, n = r === void 0 ? "mark" : r, i = e.hit, a = e.cssClasses, o = a === void 0 ? {} : a, s = vt(i._snippetResult, t);
-  process.env.NODE_ENV === "development" && X(s, 'Could not enable snippet for "'.concat(t, `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(s, 'Could not enable snippet for "'.concat(t, `", will display an empty string.
 Please check whether this attribute exists and is specified in \`attributesToSnippet\`.
 
 See: https://alg.li/highlighting
@@ -2308,7 +2308,7 @@ See: https://alg.li/highlighting
 var od = Ne("ReverseSnippet");
 function sc(e) {
   var t = e.attribute, r = e.highlightedTagName, n = r === void 0 ? "mark" : r, i = e.hit, a = e.cssClasses, o = a === void 0 ? {} : a, s = vt(i._snippetResult, t);
-  process.env.NODE_ENV === "development" && X(s, 'Could not enable reverse snippet for "'.concat(t, `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(s, 'Could not enable reverse snippet for "'.concat(t, `", will display an empty string.
 Please check whether this attribute exists and is specified in \`attributesToSnippet\`.
 
 See: https://alg.li/highlighting
@@ -2355,7 +2355,7 @@ function cd(e) {
   return 'data-insights-method="'.concat(t, '" data-insights-payload="').concat(n, '"');
 }
 function uc(e, t) {
-  return process.env.NODE_ENV === "development" && X(!1, "`insights` function has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), cd({
+  return process.env.NODE_ENV === "development" && Y(!1, "`insights` function has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), cd({
     method: e,
     payload: t
   });
@@ -2381,7 +2381,7 @@ function pd() {
   return fd(ld);
 }
 function dd() {
-  return process.env.NODE_ENV === "development" && X(!1, "`getInsightsAnonymousUserToken` function has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), pd();
+  return process.env.NODE_ENV === "development" && Y(!1, "`getInsightsAnonymousUserToken` function has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), pd();
 }
 var hd = ["page"];
 function md(e, t) {
@@ -2413,7 +2413,7 @@ var fi = "ais.infiniteHits";
 function vd() {
   return {
     read: function(t) {
-      var r = t.state, n = tt(function(a) {
+      var r = t.state, n = rt(function(a) {
         var o = a.window;
         return o.sessionStorage;
       });
@@ -2435,7 +2435,7 @@ function vd() {
       }
     },
     write: function(t) {
-      var r = t.state, n = t.hits, i = tt(function(a) {
+      var r = t.state, n = t.hits, i = rt(function(a) {
         var o = a.window;
         return o.sessionStorage;
       });
@@ -2472,7 +2472,7 @@ _e.prototype.emit = function(e) {
   }
   if (r = this._events[e], cc(r))
     return !1;
-  if (rt(r))
+  if (nt(r))
     switch (arguments.length) {
       case 1:
         r.call(this);
@@ -2493,12 +2493,12 @@ _e.prototype.emit = function(e) {
 };
 _e.prototype.addListener = function(e, t) {
   var r;
-  if (!rt(t))
+  if (!nt(t))
     throw TypeError("listener must be a function");
   return this._events || (this._events = {}), this._events.newListener && this.emit(
     "newListener",
     e,
-    rt(t.listener) ? t.listener : t
+    nt(t.listener) ? t.listener : t
   ), this._events[e] ? Er(this._events[e]) ? this._events[e].push(t) : this._events[e] = [this._events[e], t] : this._events[e] = t, Er(this._events[e]) && !this._events[e].warned && (cc(this._maxListeners) ? r = _e.defaultMaxListeners : r = this._maxListeners, r && r > 0 && this._events[e].length > r && (this._events[e].warned = !0, console.error(
     "(node) warning: possible EventEmitter memory leak detected. %d listeners added. Use emitter.setMaxListeners() to increase limit.",
     this._events[e].length
@@ -2506,7 +2506,7 @@ _e.prototype.addListener = function(e, t) {
 };
 _e.prototype.on = _e.prototype.addListener;
 _e.prototype.once = function(e, t) {
-  if (!rt(t))
+  if (!nt(t))
     throw TypeError("listener must be a function");
   var r = !1;
   function n() {
@@ -2516,11 +2516,11 @@ _e.prototype.once = function(e, t) {
 };
 _e.prototype.removeListener = function(e, t) {
   var r, n, i, a;
-  if (!rt(t))
+  if (!nt(t))
     throw TypeError("listener must be a function");
   if (!this._events || !this._events[e])
     return this;
-  if (r = this._events[e], i = r.length, n = -1, r === t || rt(r.listener) && r.listener === t)
+  if (r = this._events[e], i = r.length, n = -1, r === t || nt(r.listener) && r.listener === t)
     delete this._events[e], this._events.removeListener && this.emit("removeListener", e, t);
   else if (Er(r)) {
     for (a = i; a-- > 0; )
@@ -2545,7 +2545,7 @@ _e.prototype.removeAllListeners = function(e) {
       t !== "removeListener" && this.removeAllListeners(t);
     return this.removeAllListeners("removeListener"), this._events = {}, this;
   }
-  if (r = this._events[e], rt(r))
+  if (r = this._events[e], nt(r))
     this.removeListener(e, r);
   else if (r)
     for (; r.length; )
@@ -2554,12 +2554,12 @@ _e.prototype.removeAllListeners = function(e) {
 };
 _e.prototype.listeners = function(e) {
   var t;
-  return !this._events || !this._events[e] ? t = [] : rt(this._events[e]) ? t = [this._events[e]] : t = this._events[e].slice(), t;
+  return !this._events || !this._events[e] ? t = [] : nt(this._events[e]) ? t = [this._events[e]] : t = this._events[e].slice(), t;
 };
 _e.prototype.listenerCount = function(e) {
   if (this._events) {
     var t = this._events[e];
-    if (rt(t))
+    if (nt(t))
       return 1;
     if (t)
       return t.length;
@@ -2569,7 +2569,7 @@ _e.prototype.listenerCount = function(e) {
 _e.listenerCount = function(e, t) {
   return e.listenerCount(t);
 };
-function rt(e) {
+function nt(e) {
   return typeof e == "function";
 }
 function yd(e) {
@@ -4105,7 +4105,7 @@ dt.prototype.getFacetValues = function(e, t) {
     return Oc(function(s, u) {
       if (n.facetOrdering) {
         var c = nh(i, u);
-        if (Boolean(c))
+        if (c)
           return rh(s, c);
       }
       if (Array.isArray(n.sortBy)) {
@@ -4880,7 +4880,7 @@ function Ec(e, t, r) {
   });
 }
 function Oh() {
-  return tt(function(e) {
+  return rt(function(e) {
     var t, r, n = e.window;
     return ((t = n.navigator) === null || t === void 0 || (r = t.userAgent) === null || r === void 0 ? void 0 : r.indexOf("Algolia Crawler")) > -1;
   }, {
@@ -5343,7 +5343,7 @@ var wo = function(t) {
 }, im = /* @__PURE__ */ function() {
   function e(t) {
     var r = this, n = t.windowTitle, i = t.writeDelay, a = i === void 0 ? 400 : i, o = t.createURL, s = t.parseURL, u = t.getLocation, c = t.start, l = t.dispose, p = t.push;
-    tm(this, e), He(this, "windowTitle", void 0), He(this, "writeDelay", void 0), He(this, "_createURL", void 0), He(this, "parseURL", void 0), He(this, "getLocation", void 0), He(this, "writeTimer", void 0), He(this, "inPopState", !1), He(this, "isDisposed", !1), He(this, "latestAcknowledgedHistory", 0), He(this, "_start", void 0), He(this, "_dispose", void 0), He(this, "_push", void 0), this.windowTitle = n, this.writeTimer = void 0, this.writeDelay = a, this._createURL = o, this.parseURL = s, this.getLocation = u, this._start = c, this._dispose = l, this._push = p, tt(function(d) {
+    tm(this, e), He(this, "windowTitle", void 0), He(this, "writeDelay", void 0), He(this, "_createURL", void 0), He(this, "parseURL", void 0), He(this, "getLocation", void 0), He(this, "writeTimer", void 0), He(this, "inPopState", !1), He(this, "isDisposed", !1), He(this, "latestAcknowledgedHistory", 0), He(this, "_start", void 0), He(this, "_dispose", void 0), He(this, "_push", void 0), this.windowTitle = n, this.writeTimer = void 0, this.writeDelay = a, this._createURL = o, this.parseURL = s, this.getLocation = u, this._start = c, this._dispose = l, this._push = p, rt(function(d) {
       var f = d.window, m = r.windowTitle && r.windowTitle(r.read());
       wo(m), r.latestAcknowledgedHistory = f.history.length;
     });
@@ -5363,7 +5363,7 @@ var wo = function(t) {
     key: "write",
     value: function(r) {
       var n = this;
-      tt(function(i) {
+      rt(function(i) {
         var a = i.window, o = n.createURL(r), s = n.windowTitle && n.windowTitle(r);
         n.writeTimer && clearTimeout(n.writeTimer), n.writeTimer = setTimeout(function() {
           wo(s), n.shouldWrite(o) && (n._push ? n._push(o) : a.history.pushState(r, s || "", o), n.latestAcknowledgedHistory = a.history.length), n.inPopState = !1, n.writeTimer = void 0;
@@ -5382,7 +5382,7 @@ var wo = function(t) {
         r(n.read());
       }), this._onPopState = function() {
         n.writeTimer && (clearTimeout(n.writeTimer), n.writeTimer = void 0), n.inPopState = !0, r(n.read());
-      }, tt(function(i) {
+      }, rt(function(i) {
         var a = i.window;
         a.addEventListener("popstate", n._onPopState);
       });
@@ -5410,7 +5410,7 @@ var wo = function(t) {
     key: "dispose",
     value: function() {
       var r = this;
-      this._dispose && this._dispose(), this.isDisposed = !0, tt(function(n) {
+      this._dispose && this._dispose(), this.isDisposed = !0, rt(function(n) {
         var i = n.window;
         r._onPopState && i.removeEventListener("popstate", r._onPopState);
       }), this.writeTimer && clearTimeout(this.writeTimer), this.write({});
@@ -5424,7 +5424,7 @@ var wo = function(t) {
     key: "shouldWrite",
     value: function(r) {
       var n = this;
-      return tt(function(i) {
+      return rt(function(i) {
         var a = i.window, o = !(n.isDisposed && n.latestAcknowledgedHistory !== a.history.length);
         return (
           // When the last state change was through popstate, the IS.js state changes,
@@ -5447,7 +5447,7 @@ function Nc() {
       arrayLimit: 99
     });
   } : n, a = e.writeDelay, o = a === void 0 ? 400 : a, s = e.windowTitle, u = e.getLocation, c = u === void 0 ? function() {
-    return tt(function(f) {
+    return rt(function(f) {
       var m = f.window;
       return m.location;
     }, {
@@ -5825,7 +5825,7 @@ var Pm = function(t) {
         return typeof v.init != "function" && typeof v.render != "function";
       }))
         throw new Error(pr("The widget definition expects a `render` and/or an `init` method."));
-      return a = a.concat(f), s && Boolean(f.length) && (Hc(c, {
+      return a = a.concat(f), s && f.length && (Hc(c, {
         state: mn(a, {
           uiState: o,
           initialSearchParameters: c.state
@@ -5854,7 +5854,7 @@ var Pm = function(t) {
         throw new Error(pr("The widget definition expects a `dispose` method."));
       if (a = a.filter(function(h) {
         return f.indexOf(h) === -1;
-      }), s && Boolean(f.length)) {
+      }), s && f.length) {
         var v = f.reduce(function(h, O) {
           var P = O.dispose({
             helper: c,
@@ -5924,10 +5924,10 @@ var Pm = function(t) {
             });
           }
         }), a.forEach(function(A) {
-          process.env.NODE_ENV === "development" && X(
+          process.env.NODE_ENV === "development" && Y(
             // if it has NO getWidgetState or if it has getWidgetUiState, we don't warn
             // aka we warn if there's _only_ getWidgetState
-            !A.getWidgetState || Boolean(A.getWidgetUiState),
+            !A.getWidgetState || !!A.getWidgetUiState,
             "The `getWidgetState` method is renamed `getWidgetUiState` and will no longer exist under that name in InstantSearch.js 5.x. Please use `getWidgetUiState` instead."
           ), A.init && A.init(mr(h, m, P));
         }), c.on("change", function(A) {
@@ -5970,7 +5970,7 @@ var Pm = function(t) {
       }, Je(Je({}, f), {}, Or({}, i, Je(Je({}, f[i]), o))));
     },
     getWidgetState: function(f) {
-      return process.env.NODE_ENV === "development" && X(!1, "The `getWidgetState` method is renamed `getWidgetUiState` and will no longer exist under that name in InstantSearch.js 5.x. Please use `getWidgetUiState` instead."), this.getWidgetUiState(f);
+      return process.env.NODE_ENV === "development" && Y(!1, "The `getWidgetState` method is renamed `getWidgetUiState` and will no longer exist under that name in InstantSearch.js 5.x. Please use `getWidgetUiState` instead."), this.getWidgetUiState(f);
     },
     getWidgetSearchParameters: function(f, m) {
       var v = m.uiState;
@@ -6116,7 +6116,7 @@ The insights helper expects a JSON object of the format:
     }
   };
 }
-const Wc = "4.52.0";
+const Wc = "4.54.0";
 function zt(e) {
   return zt = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(t) {
     return typeof t;
@@ -6262,9 +6262,9 @@ var qm = /* @__PURE__ */ function(e) {
       throw new Error(Me("The `searchClient` option is required."));
     if (typeof h.search != "function")
       throw new Error("The `searchClient` must implement a `search` method.\n\nSee: https://www.algolia.com/doc/guides/building-search-ui/going-further/backend-search/in-depth/backend-instantsearch/js/");
-    if (typeof h.addAlgoliaAgent == "function" && h.addAlgoliaAgent("instantsearch.js (".concat(Wc, ")")), process.env.NODE_ENV === "development" && X(P === null, "`insightsClient` property has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), P && typeof P != "function")
+    if (typeof h.addAlgoliaAgent == "function" && h.addAlgoliaAgent("instantsearch.js (".concat(Wc, ")")), process.env.NODE_ENV === "development" && Y(P === null, "`insightsClient` property has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), P && typeof P != "function")
       throw new Error(Me("The `insightsClient` option should be a function."));
-    if (process.env.NODE_ENV === "development" && X(!n.searchParameters, "The `searchParameters` option is deprecated and will not be supported in InstantSearch.js 4.x.\n\nYou can replace it with the `configure` widget:\n\n```\nsearch.addWidgets([\n  configure(".concat(JSON.stringify(n.searchParameters, null, 2), `)
+    if (process.env.NODE_ENV === "development" && Y(!n.searchParameters, "The `searchParameters` option is deprecated and will not be supported in InstantSearch.js 4.x.\n\nYou can replace it with the `configure` widget:\n\n```\nsearch.addWidgets([\n  configure(".concat(JSON.stringify(n.searchParameters, null, 2), `)
 ]);
 \`\`\`
 
@@ -6277,7 +6277,7 @@ See `).concat(Yu({
         numberLocale: s
       }),
       compileOptions: {}
-    }, i._stalledSearchDelay = m, i._searchStalledTimer = null, i._createURL = Hm, i._initialUiState = c, i._initialResults = null, d && (process.env.NODE_ENV === "development" && X(!1, "The `searchFunction` option is deprecated. Use `onStateChange` instead."), i._searchFunction = d), i.sendEventToInsights = ue, p) {
+    }, i._stalledSearchDelay = m, i._searchStalledTimer = null, i._createURL = Hm, i._initialUiState = c, i._initialResults = null, d && (process.env.NODE_ENV === "development" && Y(!1, "The `searchFunction` option is deprecated. Use `onStateChange` instead."), i._searchFunction = d), i.sendEventToInsights = ue, p) {
       var $ = typeof p == "boolean" ? void 0 : p;
       i.use(dm($));
     }
@@ -6297,7 +6297,7 @@ See `).concat(Yu({
        * @deprecated use `status === 'stalled'` instead
        */
       function() {
-        return process.env.NODE_ENV === "development" && X(!1, '`InstantSearch._isSearchStalled` is deprecated and will be removed in InstantSearch.js 5.0.\n\nUse `InstantSearch.status === "stalled"` instead.'), this.status === "stalled";
+        return process.env.NODE_ENV === "development" && Y(!1, '`InstantSearch._isSearchStalled` is deprecated and will be removed in InstantSearch.js 5.0.\n\nUse `InstantSearch.status === "stalled"` instead.'), this.status === "stalled";
       }
     )
   }, {
@@ -6343,7 +6343,7 @@ See `).concat(Yu({
   }, {
     key: "EXPERIMENTAL_use",
     value: function() {
-      return process.env.NODE_ENV === "development" && X(!1, "The middleware API is now considered stable, so we recommend replacing `EXPERIMENTAL_use` with `use` before upgrading to the next major version."), this.use.apply(this, arguments);
+      return process.env.NODE_ENV === "development" && Y(!1, "The middleware API is now considered stable, so we recommend replacing `EXPERIMENTAL_use` with `use` before upgrading to the next major version."), this.use.apply(this, arguments);
     }
     /**
      * Adds a widget to the search instance.
@@ -6355,7 +6355,7 @@ See `).concat(Yu({
   }, {
     key: "addWidget",
     value: function(i) {
-      return process.env.NODE_ENV === "development" && X(!1, "addWidget will still be supported in 4.x releases, but not further. It is replaced by `addWidgets([widget])`"), this.addWidgets([i]);
+      return process.env.NODE_ENV === "development" && Y(!1, "addWidget will still be supported in 4.x releases, but not further. It is replaced by `addWidgets([widget])`"), this.addWidgets([i]);
     }
     /**
      * Adds multiple widgets to the search instance.
@@ -6383,7 +6383,7 @@ See `).concat(Yu({
   }, {
     key: "removeWidget",
     value: function(i) {
-      return process.env.NODE_ENV === "development" && X(!1, "removeWidget will still be supported in 4.x releases, but not further. It is replaced by `removeWidgets([widget])`"), this.removeWidgets([i]);
+      return process.env.NODE_ENV === "development" && Y(!1, "removeWidget will still be supported in 4.x releases, but not further. It is replaced by `removeWidgets([widget])`"), this.removeWidgets([i]);
     }
     /**
      * Removes multiple widgets from the search instance.
@@ -6565,7 +6565,7 @@ function H() {
     return Array.isArray(i) ? n.concat(i) : n.concat([i]);
   }, []).filter(Boolean).join(" ");
 }
-var ei, Q, kc, jt, xo, Uc, Qi, Fn = {}, Bc = [], Mm = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;
+var ei, K, kc, jt, xo, Uc, Qi, Fn = {}, Bc = [], Mm = /acit|ex(?:s|g|n|p|$)|rph|grid|ows|mnc|ntw|ine[ch]|zoo|^ord|itera/i;
 function pt(e, t) {
   for (var r in t)
     e[r] = t[r];
@@ -6586,7 +6586,7 @@ function q(e, t, r) {
 }
 function In(e, t, r, n, i) {
   var a = { type: e, props: t, key: r, ref: n, __k: null, __: null, __b: 0, __e: null, __d: void 0, __c: null, __h: null, constructor: void 0, __v: i ?? ++kc };
-  return i == null && Q.vnode != null && Q.vnode(a), a;
+  return i == null && K.vnode != null && K.vnode(a), a;
 }
 function Qc() {
   return { current: null };
@@ -6617,7 +6617,7 @@ function Kc(e) {
   }
 }
 function To(e) {
-  (!e.__d && (e.__d = !0) && jt.push(e) && !Dn.__r++ || xo !== Q.debounceRendering) && ((xo = Q.debounceRendering) || Uc)(Dn);
+  (!e.__d && (e.__d = !0) && jt.push(e) && !Dn.__r++ || xo !== K.debounceRendering) && ((xo = K.debounceRendering) || Uc)(Dn);
 }
 function Dn() {
   var e, t, r, n, i, a, o, s;
@@ -6714,20 +6714,20 @@ function Hn(e, t, r, n, i) {
           break e;
         } catch {
         }
-      typeof r == "function" || (r == null || r === !1 && t.indexOf("-") == -1 ? e.removeAttribute(t) : e.setAttribute(t, r));
+      typeof r == "function" || (r == null || r === !1 && t[4] !== "-" ? e.removeAttribute(t) : e.setAttribute(t, r));
     }
 }
 function Co(e) {
-  return this.l[e.type + !1](Q.event ? Q.event(e) : e);
+  return this.l[e.type + !1](K.event ? K.event(e) : e);
 }
 function No(e) {
-  return this.l[e.type + !0](Q.event ? Q.event(e) : e);
+  return this.l[e.type + !0](K.event ? K.event(e) : e);
 }
 function qa(e, t, r, n, i, a, o, s, u) {
   var c, l, p, d, f, m, v, h, O, P, _, T, $, x, A, w = t.type;
   if (t.constructor !== void 0)
     return null;
-  r.__h != null && (u = r.__h, s = t.__e = r.__e, t.__h = null, a = [s]), (c = Q.__b) && c(t);
+  r.__h != null && (u = r.__h, s = t.__e = r.__e, t.__h = null, a = [s]), (c = K.__b) && c(t);
   try {
     e:
       if (typeof w == "function") {
@@ -6746,7 +6746,7 @@ function qa(e, t, r, n, i, a, o, s, u) {
             l.componentDidUpdate(d, f, m);
           });
         }
-        if (l.context = P, l.props = h, l.__P = e, T = Q.__r, $ = 0, "prototype" in w && w.prototype.render) {
+        if (l.context = P, l.props = h, l.__P = e, T = K.__r, $ = 0, "prototype" in w && w.prototype.render) {
           for (l.state = l.__s, l.__d = !1, T && T(t), c = l.render(l.props, l.state, l.context), x = 0; x < l._sb.length; x++)
             l.__h.push(l._sb[x]);
           l._sb = [];
@@ -6757,19 +6757,19 @@ function qa(e, t, r, n, i, a, o, s, u) {
         l.state = l.__s, l.getChildContext != null && (n = pt(pt({}, n), l.getChildContext())), p || l.getSnapshotBeforeUpdate == null || (m = l.getSnapshotBeforeUpdate(d, f)), A = c != null && c.type === ir && c.key == null ? c.props.children : c, zc(e, Array.isArray(A) ? A : [A], t, r, n, i, a, o, s, u), l.base = t.__e, t.__h = null, l.__h.length && o.push(l), v && (l.__E = l.__ = null), l.__e = !1;
       } else
         a == null && t.__v === r.__v ? (t.__k = r.__k, t.__e = r.__e) : t.__e = Um(r.__e, t, r, n, i, a, o, u);
-    (c = Q.diffed) && c(t);
+    (c = K.diffed) && c(t);
   } catch (R) {
-    t.__v = null, (u || a != null) && (t.__e = s, t.__h = !!u, a[a.indexOf(s)] = null), Q.__e(R, t, r);
+    t.__v = null, (u || a != null) && (t.__e = s, t.__h = !!u, a[a.indexOf(s)] = null), K.__e(R, t, r);
   }
 }
 function Xc(e, t) {
-  Q.__c && Q.__c(t, e), e.some(function(r) {
+  K.__c && K.__c(t, e), e.some(function(r) {
     try {
       e = r.__h, r.__h = [], e.some(function(n) {
         n.call(r);
       });
     } catch (n) {
-      Q.__e(n, r.__v);
+      K.__e(n, r.__v);
     }
   });
 }
@@ -6809,17 +6809,17 @@ function Zc(e, t, r) {
   try {
     typeof e == "function" ? e(t) : e.current = t;
   } catch (n) {
-    Q.__e(n, r);
+    K.__e(n, r);
   }
 }
 function el(e, t, r) {
   var n, i;
-  if (Q.unmount && Q.unmount(e), (n = e.ref) && (n.current && n.current !== e.__e || Zc(n, null, t)), (n = e.__c) != null) {
+  if (K.unmount && K.unmount(e), (n = e.ref) && (n.current && n.current !== e.__e || Zc(n, null, t)), (n = e.__c) != null) {
     if (n.componentWillUnmount)
       try {
         n.componentWillUnmount();
       } catch (a) {
-        Q.__e(a, t);
+        K.__e(a, t);
       }
     n.base = n.__P = null, e.__c = void 0;
   }
@@ -6833,9 +6833,9 @@ function Bm(e, t, r) {
 }
 function Ie(e, t, r) {
   var n, i, a;
-  Q.__ && Q.__(e, t), i = (n = typeof r == "function") ? null : r && r.__k || t.__k, a = [], qa(t, e = (!n && r || t).__k = q(ir, null, [e]), i || Fn, Fn, t.ownerSVGElement !== void 0, !n && r ? [r] : i ? null : t.firstChild ? ei.call(t.childNodes) : null, a, !n && r ? r : i ? i.__e : t.firstChild, n), Xc(a, e);
+  K.__ && K.__(e, t), i = (n = typeof r == "function") ? null : r && r.__k || t.__k, a = [], qa(t, e = (!n && r || t).__k = q(ir, null, [e]), i || Fn, Fn, t.ownerSVGElement !== void 0, !n && r ? [r] : i ? null : t.firstChild ? ei.call(t.childNodes) : null, a, !n && r ? r : i ? i.__e : t.firstChild, n), Xc(a, e);
 }
-ei = Bc.slice, Q = { __e: function(e, t, r, n) {
+ei = Bc.slice, K = { __e: function(e, t, r, n) {
   for (var i, a, o; t = t.__; )
     if ((i = t.__c) && !i.__)
       try {
@@ -6968,24 +6968,24 @@ var tl = {};
       "&": 11,
       _t: 12
     }, t.scan = function(R, j) {
-      var E = R.length, U = 0, ee = 1, je = 2, G = U, Le = null, oe = null, k = "", B = [], Z = !1, K = 0, Te = 0, ge = "{{", fe = "}}";
+      var E = R.length, B = 0, ee = 1, je = 2, G = B, Le = null, oe = null, k = "", V = [], Z = !1, U = 0, Te = 0, ge = "{{", fe = "}}";
       function Ee() {
-        k.length > 0 && (B.push({ tag: "_t", text: new String(k) }), k = "");
+        k.length > 0 && (V.push({ tag: "_t", text: new String(k) }), k = "");
       }
       function We() {
-        for (var me = !0, de = Te; de < B.length; de++)
-          if (me = t.tags[B[de].tag] < t.tags._v || B[de].tag == "_t" && B[de].text.match(r) === null, !me)
+        for (var me = !0, de = Te; de < V.length; de++)
+          if (me = t.tags[V[de].tag] < t.tags._v || V[de].tag == "_t" && V[de].text.match(r) === null, !me)
             return !1;
         return me;
       }
       function Fe(me, de) {
         if (Ee(), me && We())
-          for (var Re = Te, Ve; Re < B.length; Re++)
-            B[Re].text && ((Ve = B[Re + 1]) && Ve.tag == ">" && (Ve.indent = B[Re].text.toString()), B.splice(Re, 1));
+          for (var Re = Te, Ve; Re < V.length; Re++)
+            V[Re].text && ((Ve = V[Re + 1]) && Ve.tag == ">" && (Ve.indent = V[Re].text.toString()), V.splice(Re, 1));
         else
-          de || B.push({ tag: `
+          de || V.push({ tag: `
 ` });
-        Z = !1, Te = B.length;
+        Z = !1, Te = V.length;
       }
       function Oe(me, de) {
         var Re = "=" + fe, Ve = me.indexOf(Re, de), Qe = l(
@@ -6993,16 +6993,16 @@ var tl = {};
         ).split(" ");
         return ge = Qe[0], fe = Qe[Qe.length - 1], Ve + Re.length - 1;
       }
-      for (j && (j = j.split(" "), ge = j[0], fe = j[1]), K = 0; K < E; K++)
-        G == U ? p(ge, R, K) ? (--K, Ee(), G = ee) : R.charAt(K) == `
-` ? Fe(Z) : k += R.charAt(K) : G == ee ? (K += ge.length - 1, oe = t.tags[R.charAt(K + 1)], Le = oe ? R.charAt(K + 1) : "_v", Le == "=" ? (K = Oe(R, K), G = U) : (oe && K++, G = je), Z = K) : p(fe, R, K) ? (B.push({
+      for (j && (j = j.split(" "), ge = j[0], fe = j[1]), U = 0; U < E; U++)
+        G == B ? p(ge, R, U) ? (--U, Ee(), G = ee) : R.charAt(U) == `
+` ? Fe(Z) : k += R.charAt(U) : G == ee ? (U += ge.length - 1, oe = t.tags[R.charAt(U + 1)], Le = oe ? R.charAt(U + 1) : "_v", Le == "=" ? (U = Oe(R, U), G = B) : (oe && U++, G = je), Z = U) : p(fe, R, U) ? (V.push({
           tag: Le,
           n: l(k),
           otag: ge,
           ctag: fe,
-          i: Le == "/" ? Z - ge.length : K + fe.length
-        }), k = "", K += fe.length - 1, G = U, Le == "{" && (fe == "}}" ? K++ : c(B[B.length - 1]))) : k += R.charAt(K);
-      return Fe(Z, !0), B;
+          i: Le == "/" ? Z - ge.length : U + fe.length
+        }), k = "", U += fe.length - 1, G = B, Le == "{" && (fe == "}}" ? U++ : c(V[V.length - 1]))) : k += R.charAt(U);
+      return Fe(Z, !0), V;
     };
     function c(w) {
       w.n.substr(w.n.length - 1) === "}" && (w.n = w.n.substring(0, w.n.length - 1));
@@ -7013,14 +7013,14 @@ var tl = {};
     function p(w, R, j) {
       if (R.charAt(j) != w.charAt(0))
         return !1;
-      for (var E = 1, U = w.length; E < U; E++)
+      for (var E = 1, B = w.length; E < B; E++)
         if (R.charAt(j + E) != w.charAt(E))
           return !1;
       return !0;
     }
     var d = { _t: !0, "\n": !0, $: !0, "/": !0 };
     function f(w, R, j, E) {
-      var U = [], ee = null, je = null, G = null;
+      var B = [], ee = null, je = null, G = null;
       for (je = j[j.length - 1]; w.length > 0; ) {
         if (G = w.shift(), je && je.tag == "<" && !(G.tag in d))
           throw new Error("Illegal content in < super tag.");
@@ -7031,16 +7031,16 @@ var tl = {};
             throw new Error("Closing tag without opener: /" + G.n);
           if (ee = j.pop(), G.n != ee.n && !v(G.n, ee.n, E))
             throw new Error("Nesting error: " + ee.n + " vs. " + G.n);
-          return ee.end = G.i, U;
+          return ee.end = G.i, B;
         } else
           G.tag == `
 ` && (G.last = w.length == 0 || w[0].tag == `
 `);
-        U.push(G);
+        B.push(G);
       }
       if (j.length > 0)
         throw new Error("missing closing tag: " + j.pop().n);
-      return U;
+      return B;
     }
     function m(w, R) {
       for (var j = 0, E = R.length; j < E; j++)
@@ -7048,7 +7048,7 @@ var tl = {};
           return w.tag = "#", !0;
     }
     function v(w, R, j) {
-      for (var E = 0, U = j.length; E < U; E++)
+      for (var E = 0, B = j.length; E < B; E++)
         if (j[E].c == w && j[E].o == R)
           return !0;
     }
@@ -7132,7 +7132,7 @@ var tl = {};
       return "t.b(" + w + ");";
     }
     t.walk = function(w, R) {
-      for (var j, E = 0, U = w.length; E < U; E++)
+      for (var j, E = 0, B = w.length; E < B; E++)
         j = t.codegen[w[E].tag], j && j(w[E], R);
       return R;
     }, t.parse = function(w, R, j) {
@@ -7143,9 +7143,9 @@ var tl = {};
       R = R || {};
       var j = t.cacheKey(w, R), E = this.cache[j];
       if (E) {
-        var U = E.partials;
-        for (var ee in U)
-          delete U[ee].instance;
+        var B = E.partials;
+        for (var ee in B)
+          delete B[ee].instance;
         return E;
       }
       return E = this.generate(this.parse(this.scan(w, R.delimiters), w, R), w, R), this.cache[j] = E;
@@ -7480,7 +7480,7 @@ function dg(e, t) {
 }
 function hg(e) {
   var t = e.hit, r = e.attribute, n = e.cssClasses, i = pg(e, fg), a = vt(t._highlightResult, r) || [], o = Gn(a);
-  process.env.NODE_ENV === "development" && X(Boolean(o.length), 'Could not enable highlight for "'.concat(r.toString(), `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(!!o.length, 'Could not enable highlight for "'.concat(r.toString(), `", will display an empty string.
 Please check whether this attribute exists and is either searchable or specified in \`attributesToHighlight\`.
 
 See: https://alg.li/highlighting
@@ -7614,7 +7614,7 @@ function _g(e, t) {
 }
 function jg(e) {
   var t = e.hit, r = e.attribute, n = e.cssClasses, i = Wo(e, bg), a = vt(t._highlightResult, r) || [], o = Gn(a);
-  process.env.NODE_ENV === "development" && X(Boolean(o.length), 'Could not enable highlight for "'.concat(r.toString(), `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(!!o.length, 'Could not enable highlight for "'.concat(r.toString(), `", will display an empty string.
 Please check whether this attribute exists and is either searchable or specified in \`attributesToHighlight\`.
 
 See: https://alg.li/highlighting
@@ -7753,7 +7753,7 @@ function Fg(e, t) {
 }
 function Dg(e) {
   var t = e.hit, r = e.attribute, n = e.cssClasses, i = Uo(e, xg), a = vt(t._snippetResult, r) || [], o = Gn(a);
-  process.env.NODE_ENV === "development" && X(Boolean(o.length), 'Could not enable snippet for "'.concat(r.toString(), `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(!!o.length, 'Could not enable snippet for "'.concat(r.toString(), `", will display an empty string.
 Please check whether this attribute exists and is specified in \`attributesToSnippet\`.
 
 See: https://alg.li/highlighting
@@ -7845,7 +7845,7 @@ function Ug(e, t) {
 }
 function Bg(e) {
   var t = e.hit, r = e.attribute, n = e.cssClasses, i = kg(e, Mg), a = vt(t._snippetResult, r) || [], o = Gn(a);
-  process.env.NODE_ENV === "development" && X(Boolean(o.length), 'Could not enable snippet for "'.concat(r.toString(), `", will display an empty string.
+  process.env.NODE_ENV === "development" && Y(!!o.length, 'Could not enable snippet for "'.concat(r.toString(), `", will display an empty string.
 Please check whether this attribute exists and is specified in \`attributesToSnippet\`.
 
 See: https://alg.li/highlighting
@@ -8061,7 +8061,7 @@ var iv = {
     key: "render",
     value: function() {
       var i = this;
-      process.env.NODE_ENV === "development" && X(Object.keys(this.props.templates).every(function(c) {
+      process.env.NODE_ENV === "development" && Y(Object.keys(this.props.templates).every(function(c) {
         return typeof i.props.templates[c] == "function";
       }), `Hogan.js and string-based templates are deprecated and will not be supported in InstantSearch.js 5.x.
 
@@ -8174,7 +8174,7 @@ var uv = function(t) {
       key: o.objectID,
       data: Ko(Ko({}, o), {}, {
         get __hitIndex() {
-          return process.env.NODE_ENV === "development" && X(!1, "The `__hitIndex` property is deprecated. Use the absolute `__position` instead."), s;
+          return process.env.NODE_ENV === "development" && Y(!1, "The `__hitIndex` property is deprecated. Use the absolute `__position` instead."), s;
         }
       })
     }));
@@ -8267,8 +8267,8 @@ var wi = he({
         }))).then(function(j) {
           if (j) {
             m && j.hits.length > 0 && (j.hits = Qu(j.hits));
-            var E = ec(j.hits, 0, u), U = tc(E, j.queryID);
-            P = U, _ = !1, T(qe(qe({}, w.getWidgetRenderState(A)), {}, {
+            var E = ec(j.hits, 0, u), B = tc(E, j.queryID);
+            P = B, _ = !1, T(qe(qe({}, w.getWidgetRenderState(A)), {}, {
               instantSearchInstance: A.instantSearchInstance
             }), !1);
           }
@@ -8553,7 +8553,7 @@ var gn = he({
         });
         if (!Array.isArray($))
           throw new Error(gn("The `transformItems` option expects a function that returns an Array."));
-        return process.env.NODE_ENV === "development" && X(o >= (T.maxValuesPerFacet || 0), "The maxValuesPerFacet set by dynamic widgets (".concat(o, ") is smaller than one of the limits set by a widget (").concat(T.maxValuesPerFacet, "). This causes a mismatch in query parameters and thus an extra network request when that widget is mounted.")), process.env.NODE_ENV === "development" && X($.length <= Xo || n.facets !== void 0, "More than ".concat(Xo, ` facets are requested to be displayed without explicitly setting which facets to retrieve. This could have a performance impact. Set "facets" to [] to do two smaller network requests, or explicitly to ['*'] to avoid this warning.`)), {
+        return process.env.NODE_ENV === "development" && Y(o >= (T.maxValuesPerFacet || 0), "The maxValuesPerFacet set by dynamic widgets (".concat(o, ") is smaller than one of the limits set by a widget (").concat(T.maxValuesPerFacet, "). This causes a mismatch in query parameters and thus an extra network request when that widget is mounted.")), process.env.NODE_ENV === "development" && Y($.length <= Xo || n.facets !== void 0, "More than ".concat(Xo, ` facets are requested to be displayed without explicitly setting which facets to retrieve. This could have a performance impact. Set "facets" to [] to do two smaller network requests, or explicitly to ['*'] to avoid this warning.`)), {
           attributesToRender: $,
           widgetParams: n
         };
@@ -9448,7 +9448,7 @@ var hl = /* @__PURE__ */ function(e) {
         isFromSearch: this.props.isFromSearch
       }), l = i.value;
       i.isRefined !== void 0 && (l += "/".concat(i.isRefined)), i.count !== void 0 && (l += "/".concat(i.count));
-      var p = H(this.props.cssClasses.item, i.isRefined && this.props.cssClasses.selectedItem, !i.count && this.props.cssClasses.disabledItem, Boolean(ls(i) && Array.isArray(i.data) && i.data.length > 0) && this.props.cssClasses.parentItem);
+      var p = H(this.props.cssClasses.item, i.isRefined && this.props.cssClasses.selectedItem, !i.count && this.props.cssClasses.disabledItem, !!(ls(i) && Array.isArray(i.data) && i.data.length > 0) && this.props.cssClasses.parentItem);
       return q(hy, {
         templateKey: "item",
         key: l,
@@ -9634,7 +9634,7 @@ var xy = function(t) {
       key: u.objectID,
       data: ps(ps({}, u), {}, {
         get __hitIndex() {
-          return process.env.NODE_ENV === "development" && X(!1, "The `__hitIndex` property is deprecated. Use the absolute `__position` instead."), c;
+          return process.env.NODE_ENV === "development" && Y(!1, "The `__hitIndex` property is deprecated. Use the absolute `__position` instead."), c;
         }
       }),
       bindEvent: i,
@@ -9660,7 +9660,7 @@ function ds(e, t) {
   }
   return r;
 }
-function it(e) {
+function at(e) {
   for (var t = 1; t < arguments.length; t++) {
     var r = arguments[t] != null ? arguments[t] : {};
     t % 2 ? ds(Object(r), !0).forEach(function(n) {
@@ -9702,18 +9702,18 @@ var Ny = he({
     return {
       $$type: "ais.hits",
       init: function(d) {
-        t(it(it({}, this.getWidgetRenderState(d)), {}, {
+        t(at(at({}, this.getWidgetRenderState(d)), {}, {
           instantSearchInstance: d.instantSearchInstance
         }), !0);
       },
       render: function(d) {
         var f = this.getWidgetRenderState(d);
-        t(it(it({}, f), {}, {
+        t(at(at({}, f), {}, {
           instantSearchInstance: d.instantSearchInstance
         }), !1), f.sendEvent("view", f.hits);
       },
       getRenderState: function(d, f) {
-        return it(it({}, d), {}, {
+        return at(at({}, d), {}, {
           hits: this.getWidgetRenderState(f)
         });
       },
@@ -9750,7 +9750,7 @@ var Ny = he({
       dispose: function(d) {
         var f = d.state;
         return r(), o ? f.setQueryParameters(Object.keys(Vt).reduce(function(m, v) {
-          return it(it({}, m), {}, ml({}, v, void 0));
+          return at(at({}, m), {}, ml({}, v, void 0));
         }, {})) : f;
       },
       getWidgetSearchParameters: function(d) {
@@ -9856,7 +9856,7 @@ var Wy = function(t, r) {
     for (var a = arguments.length, o = new Array(a > 1 ? a - 1 : 0), s = 1; s < a; s++)
       o[s - 1] = arguments[s];
     var u = o[0];
-    if (process.env.NODE_ENV === "development" && X(!1, "`insights` function has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), !t) {
+    if (process.env.NODE_ENV === "development" && Y(!1, "`insights` function has been deprecated. It is still supported in 4.x releases, but not further. It is replaced by the `insights` middleware.\n\nFor more information, visit https://www.algolia.com/doc/guides/getting-insights-and-analytics/search-analytics/click-through-and-conversions/how-to/send-click-and-conversion-events-with-instantsearch/js/"), !t) {
       var c = he({
         name: "instantsearch"
       });
@@ -10043,9 +10043,9 @@ var eb = he({
   });
 };
 const ib = nb;
-var ri, le, _i, ys, Vn = 0, gl = [], En = [], bs = Q.__b, Os = Q.__r, Ss = Q.diffed, ws = Q.__c, Ps = Q.unmount;
+var ri, le, _i, ys, Vn = 0, gl = [], En = [], bs = K.__b, Os = K.__r, Ss = K.diffed, ws = K.__c, Ps = K.unmount;
 function Wa(e, t) {
-  Q.__h && Q.__h(le, e, Vn || t), Vn = 0;
+  K.__h && K.__h(le, e, Vn || t), Vn = 0;
   var r = le.__H || (le.__H = { __: [], __h: [] });
   return e >= r.__.length && r.__.push({ __V: En }), r.__[e];
 }
@@ -10090,7 +10090,7 @@ function ab(e, t, r) {
 }
 function ob(e, t) {
   var r = Wa(ri++, 3);
-  !Q.__s && vl(r.__H, t) && (r.__ = e, r.i = t, le.__H.__h.push(r));
+  !K.__s && vl(r.__H, t) && (r.__ = e, r.i = t, le.__H.__h.push(r));
 }
 function sb(e) {
   return Vn = 5, ub(function() {
@@ -10107,24 +10107,24 @@ function cb() {
       try {
         e.__H.__h.forEach($n), e.__H.__h.forEach(fa), e.__H.__h = [];
       } catch (t) {
-        e.__H.__h = [], Q.__e(t, e.__v);
+        e.__H.__h = [], K.__e(t, e.__v);
       }
 }
-Q.__b = function(e) {
+K.__b = function(e) {
   le = null, bs && bs(e);
-}, Q.__r = function(e) {
+}, K.__r = function(e) {
   Os && Os(e), ri = 0;
   var t = (le = e.__c).__H;
   t && (_i === le ? (t.__h = [], le.__h = [], t.__.forEach(function(r) {
     r.__N && (r.__ = r.__N), r.__V = En, r.__N = r.i = void 0;
   })) : (t.__h.forEach($n), t.__h.forEach(fa), t.__h = [])), _i = le;
-}, Q.diffed = function(e) {
+}, K.diffed = function(e) {
   Ss && Ss(e);
   var t = e.__c;
-  t && t.__H && (t.__H.__h.length && (gl.push(t) !== 1 && ys === Q.requestAnimationFrame || ((ys = Q.requestAnimationFrame) || lb)(cb)), t.__H.__.forEach(function(r) {
+  t && t.__H && (t.__H.__h.length && (gl.push(t) !== 1 && ys === K.requestAnimationFrame || ((ys = K.requestAnimationFrame) || lb)(cb)), t.__H.__.forEach(function(r) {
     r.i && (r.__H = r.i), r.__V !== En && (r.__ = r.__V), r.i = void 0, r.__V = En;
   })), _i = le = null;
-}, Q.__c = function(e, t) {
+}, K.__c = function(e, t) {
   t.some(function(r) {
     try {
       r.__h.forEach($n), r.__h = r.__h.filter(function(n) {
@@ -10133,10 +10133,10 @@ Q.__b = function(e) {
     } catch (n) {
       t.some(function(i) {
         i.__h && (i.__h = []);
-      }), t = [], Q.__e(n, r.__v);
+      }), t = [], K.__e(n, r.__v);
     }
   }), ws && ws(e, t);
-}, Q.unmount = function(e) {
+}, K.unmount = function(e) {
   Ps && Ps(e);
   var t, r = e.__c;
   r && r.__H && (r.__H.__.forEach(function(n) {
@@ -10145,7 +10145,7 @@ Q.__b = function(e) {
     } catch (i) {
       t = i;
     }
-  }), r.__H = void 0, t && Q.__e(t, r.__v));
+  }), r.__H = void 0, t && K.__e(t, r.__v));
 };
 var js = typeof requestAnimationFrame == "function";
 function lb(e) {
@@ -10336,8 +10336,8 @@ var bb = he({
   var r = t || {}, n = r.templates, i = n === void 0 ? {} : n, a = r.hidden, o = a === void 0 ? function() {
     return !1;
   } : a, s = r.collapsed, u = r.cssClasses, c = u === void 0 ? {} : u;
-  process.env.NODE_ENV === "development" && X(typeof o == "function", 'The `hidden` option in the "panel" widget expects a function returning a boolean (received type '.concat($i(o), ").")), process.env.NODE_ENV === "development" && X(typeof s > "u" || typeof s == "function", 'The `collapsed` option in the "panel" widget expects a function returning a boolean (received type '.concat($i(s), ")."));
-  var l = document.createElement("div"), p = Boolean(s), d = typeof s == "function" ? s : function() {
+  process.env.NODE_ENV === "development" && Y(typeof o == "function", 'The `hidden` option in the "panel" widget expects a function returning a boolean (received type '.concat($i(o), ").")), process.env.NODE_ENV === "development" && Y(typeof s > "u" || typeof s == "function", 'The `collapsed` option in the "panel" widget expects a function returning a boolean (received type '.concat($i(s), ")."));
+  var l = document.createElement("div"), p = !!s, d = typeof s == "function" ? s : function() {
     return !1;
   }, f = {
     root: H(Xe(), c.root),
@@ -10377,8 +10377,7 @@ var bb = he({
           var x = $.collapsed;
           return `<svg
           class="`.concat(f.collapseIcon, `"
-          width="1em"
-          height="1em"
+          style="width: 1em; height: 1em;"
           viewBox="0 0 500 500"
         >
         <path d="`).concat(x ? "M100 250l300-150v300z" : "M250 400l150-300H100z", `" fill="currentColor" />
@@ -10413,9 +10412,9 @@ var bb = he({
           var w = x[0], R = ze(ze({}, _.getWidgetRenderState ? _.getWidgetRenderState(w) : {}), w);
           if (P({
             options: R,
-            hidden: Boolean(o(R)),
+            hidden: !!o(R),
             collapsible: p,
-            collapsed: Boolean(d(R))
+            collapsed: !!d(R)
           }), typeof _.render == "function") {
             var j;
             (j = _.render).call.apply(j, [this].concat(x));
@@ -10432,7 +10431,7 @@ var bb = he({
     };
   };
 };
-const at = Sb;
+const Ze = Sb;
 function Gr(e) {
   return Gr = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(t) {
     return typeof t;
@@ -10518,7 +10517,7 @@ var xs = he({
 });
 function $b(e) {
   return [e.disjunctiveFacetsRefinements, e.facetsRefinements, e.hierarchicalFacetsRefinements, e.numericRefinements].some(function(t) {
-    return Boolean(t && Object.keys(t).length > 0);
+    return !!(t && Object.keys(t).length > 0);
   });
 }
 function xb(e) {
@@ -10545,7 +10544,7 @@ function Ab(e) {
     sharedHelperState: a,
     trackedFilters: n
   }), u = [].concat(Qn(r), Qn(s));
-  process.env.NODE_ENV === "development" && X(u.length <= 10, "\nThe maximum number of `ruleContexts` is 10. They have been sliced to that limit.\nConsider using `transformRuleContexts` to minimize the number of rules sent to Algolia.\n");
+  process.env.NODE_ENV === "development" && Y(u.length <= 10, "\nThe maximum number of `ruleContexts` is 10. They have been sliced to that limit.\nConsider using `transformRuleContexts` to minimize the number of rules sent to Algolia.\n");
   var c = i(u).slice(0, 10);
   Et(o, c) || t.overrideStateWithoutTriggeringChangeEvent(ft(ft({}, a), {}, {
     ruleContexts: c
@@ -10573,7 +10572,7 @@ var Cb = function(t) {
           initialRuleContexts: d,
           trackedFilters: o,
           transformRuleContexts: u
-        }), p && (($b(O) || Boolean(n.transformRuleContexts)) && f({
+        }), p && (($b(O) || n.transformRuleContexts) && f({
           state: O
         }), h.on("change", f)), t(ft(ft({}, this.getWidgetRenderState(v)), {}, {
           instantSearchInstance: P
@@ -10791,15 +10790,15 @@ var On = he({
     if (p === !0 && f <= c)
       throw new Error(On("`showMoreLimit` should be greater than `limit`."));
     var T = function(k) {
-      var B = k.name, Z = k.escapedValue, K = Cs(k, Qb);
-      return re(re({}, K), {}, {
+      var V = k.name, Z = k.escapedValue, U = Cs(k, Qb);
+      return re(re({}, U), {}, {
         value: Z,
-        label: B,
-        highlighted: B
+        label: V,
+        highlighted: V
       });
     }, $, x = [], A = !0, w, R, j = !1, E = function() {
     };
-    function U() {
+    function B() {
       E();
     }
     function ee(oe, k) {
@@ -10813,12 +10812,12 @@ var On = he({
     var G = function() {
       return function() {
       };
-    }, Le = function(k, B) {
+    }, Le = function(k, V) {
       return function(Z) {
-        return function(K) {
+        return function(U) {
           var Te = Z.instantSearchInstance, ge = Z.results;
-          if (K === "" && x)
-            t(re(re({}, B.getWidgetRenderState(re(re({}, Z), {}, {
+          if (U === "" && x)
+            t(re(re({}, V.getWidgetRenderState(re(re({}, Z), {}, {
               results: $
             }))), {}, {
               instantSearchInstance: Te
@@ -10830,7 +10829,7 @@ var On = he({
             };
             k.searchForFacetValues(
               a,
-              K,
+              U,
               // We cap the `maxFacetHits` value to 100 because the Algolia API
               // doesn't support a greater number.
               // See https://www.algolia.com/doc/api-reference/api-parameters/maxFacetHits/
@@ -10846,7 +10845,7 @@ var On = he({
               }), {
                 results: ge
               });
-              t(re(re({}, B.getWidgetRenderState(re(re({}, Z), {}, {
+              t(re(re({}, V.getWidgetRenderState(re(re({}, Z), {}, {
                 results: $
               }))), {}, {
                 items: Fe,
@@ -10872,13 +10871,13 @@ var On = he({
           instantSearchInstance: k.instantSearchInstance
         }), !1);
       },
-      getRenderState: function(k, B) {
+      getRenderState: function(k, V) {
         return re(re({}, k), {}, {
-          refinementList: re(re({}, k.refinementList), {}, gr({}, a, this.getWidgetRenderState(B)))
+          refinementList: re(re({}, k.refinementList), {}, gr({}, a, this.getWidgetRenderState(V)))
         });
       },
       getWidgetRenderState: function(k) {
-        var B = k.results, Z = k.state, K = k.createURL, Te = k.instantSearchInstance, ge = k.helper, fe = [], Ee = [];
+        var V = k.results, Z = k.state, U = k.createURL, Te = k.instantSearchInstance, ge = k.helper, fe = [], Ee = [];
         if ((!R || !w || !G) && (R = vp({
           instantSearchInstance: Te,
           helper: ge,
@@ -10886,21 +10885,21 @@ var On = he({
           widgetType: this.$$type
         }), w = function(Tt) {
           R("click", Tt), ge.toggleFacetRefinement(a, Tt).search();
-        }, G = Le(ge, this)), B) {
-          var We = B.getFacetValues(a, {
+        }, G = Le(ge, this)), V) {
+          var We = V.getFacetValues(a, {
             sortBy: v,
             facetOrdering: v === Ns
           });
           Ee = We && Array.isArray(We) ? We : [], fe = _(Ee.slice(0, je()).map(T), {
-            results: B
+            results: V
           });
           var Fe = Z.maxValuesPerFacet, Oe = je();
-          A = Fe > Oe ? Ee.length <= Oe : Ee.length < Oe, $ = B, x = fe, k.results && (E = ee(k, this));
+          A = Fe > Oe ? Ee.length <= Oe : Ee.length < Oe, $ = V, x = fe, k.results && (E = ee(k, this));
         }
         var me = G && G(k), de = j && x.length > c, Re = p && !A, Ve = de || Re;
         return {
           createURL: function(Tt) {
-            return K(Z.resetPage().toggleFacetRefinement(a, Tt));
+            return U(Z.resetPage().toggleFacetRefinement(a, Tt));
           },
           items: fe,
           refine: w,
@@ -10910,31 +10909,38 @@ var On = he({
           widgetParams: n,
           isShowingMore: j,
           canToggleShowMore: Ve,
-          toggleShowMore: U,
+          toggleShowMore: B,
           sendEvent: R,
           hasExhaustiveItems: A
         };
       },
       dispose: function(k) {
-        var B = k.state;
+        var V = k.state;
         r();
-        var Z = B.setQueryParameter("maxValuesPerFacet", void 0);
+        var Z = V.setQueryParameter("maxValuesPerFacet", void 0);
         return s === "and" ? Z.removeFacet(a) : Z.removeDisjunctiveFacet(a);
       },
-      getWidgetUiState: function(k, B) {
-        var Z = B.searchParameters, K = s === "or" ? Z.getDisjunctiveRefinements(a) : Z.getConjunctiveRefinements(a);
-        return K.length ? re(re({}, k), {}, {
-          refinementList: re(re({}, k.refinementList), {}, gr({}, a, K))
+      getWidgetUiState: function(k, V) {
+        var Z = V.searchParameters, U = s === "or" ? Z.getDisjunctiveRefinements(a) : Z.getConjunctiveRefinements(a);
+        return U.length ? re(re({}, k), {}, {
+          refinementList: re(re({}, k.refinementList), {}, gr({}, a, U))
         }) : k;
       },
-      getWidgetSearchParameters: function(k, B) {
-        var Z = B.uiState, K = s === "or", Te = Z.refinementList && Z.refinementList[a], ge = k.clearRefinements(a), fe = K ? ge.addDisjunctiveFacet(a) : ge.addFacet(a), Ee = fe.maxValuesPerFacet || 0, We = Math.max(Ee, p ? f : c), Fe = fe.setQueryParameter("maxValuesPerFacet", We);
+      getWidgetSearchParameters: function(k, V) {
+        var Z = V.uiState, U = s === "or";
+        if (k.isHierarchicalFacet(a))
+          return process.env.NODE_ENV === "development" && Y(!1, 'RefinementList: Attribute "'.concat(a, `" is already used by another widget applying hierarchical faceting.
+As this is not supported, please make sure to remove this other widget or this RefinementList widget will not work at all.`)), k;
+        if (U && k.isConjunctiveFacet(a) || !U && k.isDisjunctiveFacet(a))
+          return process.env.NODE_ENV === "development" && Y(!1, 'RefinementList: Attribute "'.concat(a, `" is used by another refinement list with a different operator.
+As this is not supported, please make sure to only use this attribute with one of the two operators.`)), k;
+        var Te = Z.refinementList && Z.refinementList[a], ge = k.clearRefinements(a), fe = U ? ge.addDisjunctiveFacet(a) : ge.addFacet(a), Ee = fe.maxValuesPerFacet || 0, We = Math.max(Ee, p ? f : c), Fe = fe.setQueryParameter("maxValuesPerFacet", We);
         if (!Te) {
-          var Oe = K ? "disjunctiveFacetsRefinements" : "facetsRefinements";
+          var Oe = U ? "disjunctiveFacetsRefinements" : "facetsRefinements";
           return Fe.setQueryParameters(gr({}, Oe, re(re({}, Fe[Oe]), {}, gr({}, a, []))));
         }
         return Te.reduce(function(me, de) {
-          return K ? me.addDisjunctiveFacetRefinement(a, de) : me.addFacetRefinement(a, de);
+          return U ? me.addDisjunctiveFacetRefinement(a, de) : me.addFacetRefinement(a, de);
         }, Fe);
       }
     };
@@ -10972,7 +10978,8 @@ var Zb = q("path", {
       className: r.resetIcon,
       viewBox: "0 0 20 20",
       width: "10",
-      height: "10"
+      height: "10",
+      "aria-hidden": "true"
     }, Zb);
   },
   submit: function(t) {
@@ -10981,7 +10988,8 @@ var Zb = q("path", {
       className: r.submitIcon,
       width: "10",
       height: "10",
-      viewBox: "0 0 40 40"
+      viewBox: "0 0 40 40",
+      "aria-hidden": "true"
     }, eO);
   },
   loadingIndicator: function(t) {
@@ -10991,7 +10999,8 @@ var Zb = q("path", {
       width: "16",
       height: "16",
       viewBox: "0 0 38 38",
-      stroke: "#444"
+      stroke: "#444",
+      "aria-hidden": "true"
     }, tO);
   }
 };
@@ -11073,7 +11082,7 @@ function uO(e, t) {
 }
 var cO = he({
   name: "refinement-list"
-}), Ae = Ne("RefinementList"), Ze = Ne("SearchBox"), lO = function(t) {
+}), Ae = Ne("RefinementList"), et = Ne("SearchBox"), lO = function(t) {
   var r = t.containerNode, n = t.cssClasses, i = t.templates, a = t.searchBoxTemplates, o = t.renderState, s = t.showMore, u = t.searchable, c = t.searchablePlaceholder, l = t.searchableIsAlwaysActive;
   return function(p, d) {
     var f = p.refine, m = p.items, v = p.createURL, h = p.searchForItems, O = p.isFromSearch, P = p.instantSearchInstance, _ = p.toggleShowMore, T = p.isShowingMore, $ = p.hasExhaustiveItems, x = p.canToggleShowMore;
@@ -11111,7 +11120,7 @@ var cO = he({
   var r = t || {}, n = r.container, i = r.attribute, a = r.operator, o = r.sortBy, s = r.limit, u = r.showMore, c = r.showMoreLimit, l = r.searchable, p = l === void 0 ? !1 : l, d = r.searchablePlaceholder, f = d === void 0 ? "Search..." : d, m = r.searchableEscapeFacetValues, v = m === void 0 ? !0 : m, h = r.searchableIsAlwaysActive, O = h === void 0 ? !0 : h, P = r.cssClasses, _ = P === void 0 ? {} : P, T = r.templates, $ = T === void 0 ? {} : T, x = r.transformItems;
   if (!n)
     throw new Error(cO("The `container` option is required."));
-  var A = p ? Boolean(v) : !1, w = gt(n), R = {
+  var A = p ? !!v : !1, w = gt(n), R = {
     root: H(Ae(), _.root),
     noRefinementRoot: H(Ae({
       modifierName: "noRefinement"
@@ -11152,29 +11161,29 @@ var cO = he({
       modifierName: "disabled"
     }), _.disabledShowMore),
     searchable: {
-      root: H(Ze(), _.searchableRoot),
-      form: H(Ze({
+      root: H(et(), _.searchableRoot),
+      form: H(et({
         descendantName: "form"
       }), _.searchableForm),
-      input: H(Ze({
+      input: H(et({
         descendantName: "input"
       }), _.searchableInput),
-      submit: H(Ze({
+      submit: H(et({
         descendantName: "submit"
       }), _.searchableSubmit),
-      submitIcon: H(Ze({
+      submitIcon: H(et({
         descendantName: "submitIcon"
       }), _.searchableSubmitIcon),
-      reset: H(Ze({
+      reset: H(et({
         descendantName: "reset"
       }), _.searchableReset),
-      resetIcon: H(Ze({
+      resetIcon: H(et({
         descendantName: "resetIcon"
       }), _.searchableResetIcon),
-      loadingIndicator: H(Ze({
+      loadingIndicator: H(et({
         descendantName: "loadingIndicator"
       }), _.searchableLoadingIndicator),
-      loadingIcon: H(Ze({
+      loadingIcon: H(et({
         descendantName: "loadingIcon"
       }), _.searchableLoadingIcon)
     }
@@ -11208,7 +11217,7 @@ var cO = he({
     $$widgetType: "ais.refinementList"
   });
 };
-const et = fO;
+const tt = fO;
 function en(e) {
   return en = typeof Symbol == "function" && typeof Symbol.iterator == "symbol" ? function(t) {
     return typeof t;
@@ -11870,7 +11879,7 @@ function eS(e, t) {
 
 `).concat(JSON.stringify(Kn(n), null, 2));
     }), Promise.all(n.filter(function(i) {
-      return Boolean(i);
+      return !!i;
     }).map(function(i) {
       if (xt(typeof i.sourceId == "string", "A source must provide a `sourceId` string."), r.includes(i.sourceId))
         throw new Error("[Autocomplete] The `sourceId` ".concat(JSON.stringify(i.sourceId), " is not unique."));
@@ -11945,7 +11954,7 @@ function nS(e, t) {
 }
 var iS = /((gt|sm)-|galaxy nexus)|samsung[- ]/i;
 function aS(e) {
-  return Boolean(e && e.match(iS));
+  return !!(e && e.match(iS));
 }
 function Gs(e, t) {
   var r = Object.keys(e);
@@ -12376,10 +12385,10 @@ function ba(e, t) {
   return n;
 }
 function jn(e) {
-  return Boolean(e.execute);
+  return !!e.execute;
 }
 function RS(e) {
-  return Boolean(e == null ? void 0 : e.execute);
+  return !!(e != null && e.execute);
 }
 function IS(e, t, r) {
   if (RS(e)) {
@@ -12409,7 +12418,7 @@ function ES(e) {
     if (!jn(i))
       return n.push(i), n;
     var a = i.searchClient, o = i.execute, s = i.requesterId, u = i.requests, c = n.find(function(d) {
-      return jn(i) && jn(d) && d.searchClient === a && Boolean(s) && d.requesterId === s;
+      return jn(i) && jn(d) && d.searchClient === a && !!s && d.requesterId === s;
     });
     if (c) {
       var l;
@@ -12644,7 +12653,7 @@ function qS(e) {
         }, a));
       }
     };
-    t.preventDefault(), i.getState().isOpen === !1 && (r.openOnFocus || Boolean(i.getState().query)) ? Bt(bt({
+    t.preventDefault(), i.getState().isOpen === !1 && (r.openOnFocus || i.getState().query) ? Bt(bt({
       event: t,
       props: r,
       query: i.getState().query,
@@ -12847,7 +12856,7 @@ function zS(e) {
   }, u = function(v) {
     var h;
     function O(j) {
-      (t.openOnFocus || Boolean(n.getState().query)) && Bt(we({
+      (t.openOnFocus || n.getState().query) && Bt(we({
         event: j,
         props: t,
         query: n.getState().completion || n.getState().query,
@@ -13148,7 +13157,7 @@ var ZS = function(t, r) {
     case "focus":
       return J(J({}, t), {}, {
         activeItemId: r.props.defaultActiveItemId,
-        isOpen: (r.props.openOnFocus || Boolean(t.query)) && r.props.shouldPanelOpen({
+        isOpen: (r.props.openOnFocus || !!t.query) && r.props.shouldPanelOpen({
           state: t
         })
       });
@@ -13632,8 +13641,8 @@ function Aw(e) {
     class: n.root
   }, f)), v = d("div", {
     class: n.detachedContainer,
-    onMouseDown: function(K) {
-      K.stopPropagation();
+    onMouseDown: function(U) {
+      U.stopPropagation();
     }
   }), h = d("div", {
     class: n.detachedOverlay,
@@ -13691,17 +13700,17 @@ function Aw(e) {
   }, r)), E = d("form", st({
     class: n.form,
     children: [A, R, w]
-  }, j)), U = u.getPanelProps(st({
+  }, j)), B = u.getPanelProps(st({
     state: l,
     props: t.getPanelProps({})
   }, r)), ee = d("div", st({
     class: n.panel
-  }, U)), je = d("div", {
+  }, B)), je = d("div", {
     class: n.detachedSearchButtonQuery,
     textContent: l.query
   }), G = d("div", {
     class: n.detachedSearchButtonPlaceholder,
-    hidden: Boolean(l.query),
+    hidden: !!l.query,
     textContent: s
   });
   if (process.env.NODE_ENV === "test" && ke(ee, {
@@ -13725,17 +13734,17 @@ function Aw(e) {
       textContent: p.detachedCancelButtonText,
       // Prevent `onTouchStart` from closing the panel
       // since it should be initiated by `onClick` only
-      onTouchStart: function(K) {
-        K.stopPropagation();
+      onTouchStart: function(U) {
+        U.stopPropagation();
       },
       onClick: function() {
         t.setIsOpen(!1), c(!1);
       }
-    }), B = d("div", {
+    }), V = d("div", {
       class: n.detachedFormContainer,
       children: [E, k]
     });
-    v.appendChild(B), m.appendChild(oe);
+    v.appendChild(V), m.appendChild(oe);
   } else
     m.appendChild(E);
   return {
@@ -14413,7 +14422,7 @@ function jP(e) {
   }), ke(n.detachedSearchButtonQuery, {
     textContent: a.query
   }), ke(n.detachedSearchButtonPlaceholder, {
-    hidden: Boolean(a.query)
+    hidden: !!a.query
   });
 }
 function RP(e, t) {
@@ -14561,10 +14570,10 @@ function xP(e) {
   }), f = o(function() {
     return tw(wt(wt({}, p.value.core), {}, {
       onStateChange: function(R) {
-        var j, E, U;
+        var j, E, B;
         u.current = R.state.collections.some(function(ee) {
           return ee.source.templates.noResults;
-        }), (j = l.current) === null || j === void 0 || j.call(l, R), (E = (U = p.value.core).onStateChange) === null || E === void 0 || E.call(U, R);
+        }), (j = l.current) === null || j === void 0 || j.call(l, R), (E = (B = p.value.core).onStateChange) === null || E === void 0 || E.call(B, R);
       },
       shouldPanelOpen: c.current.shouldPanelOpen || function(w) {
         var R = w.state;
@@ -14573,7 +14582,7 @@ function xP(e) {
         var j = sn(R) > 0;
         if (!p.value.core.openOnFocus && !R.query)
           return j;
-        var E = Boolean(u.current || p.value.renderer.renderNoResults);
+        var E = !!(u.current || p.value.renderer.renderNoResults);
         return !j && E || j;
       },
       __autocomplete_metadata: {
@@ -14679,8 +14688,8 @@ function xP(e) {
     return l.current = function(R) {
       var j = R.state, E = R.prevState;
       if (d.value && E.isOpen !== j.isOpen && A(j.isOpen), !d.value && j.isOpen && !E.isOpen && _(), j.query !== E.query) {
-        var U = p.value.core.environment.document.querySelectorAll(".aa-Panel--scrollable");
-        U.forEach(function(ee) {
+        var B = p.value.core.environment.document.querySelectorAll(".aa-Panel--scrollable");
+        B.forEach(function(ee) {
           ee.scrollTop !== 0 && (ee.scrollTop = 0);
         });
       }
@@ -14702,15 +14711,15 @@ function xP(e) {
     if (!d.value)
       return function() {
       };
-    function w(U) {
-      P.value.detachedContainer.classList.toggle("aa-DetachedContainer--modal", U);
+    function w(B) {
+      P.value.detachedContainer.classList.toggle("aa-DetachedContainer--modal", B);
     }
-    function R(U) {
-      w(U.matches);
+    function R(B) {
+      w(B.matches);
     }
     var j = p.value.core.environment.matchMedia(getComputedStyle(p.value.core.environment.document.documentElement).getPropertyValue("--aa-detached-modal-media-query"));
     w(j.matches);
-    var E = Boolean(j.addEventListener);
+    var E = !!j.addEventListener;
     return E ? j.addEventListener("change", R) : j.addListener(R), function() {
       E ? j.removeEventListener("change", R) : j.removeListener(R);
     };
@@ -14731,8 +14740,8 @@ function xP(e) {
       // @MAJOR Deal with registering components with the same name as the
       // default ones. If we disallow overriding default components, we'd just
       // need to pass all `components` here.
-      components: hw(j, function(U) {
-        var ee = U.value;
+      components: hw(j, function(B) {
+        var ee = B.value;
         return !ee.hasOwnProperty("__autocomplete_componentName");
       }),
       initialState: m.current
@@ -14949,9 +14958,9 @@ function qP(e) {
                     var j = DP(R), E;
                     try {
                       for (j.s(); !(E = j.n()).done; ) {
-                        var U = E.value;
+                        var B = E.value;
                         w.push(Ll({
-                          __autocomplete_qsCategory: U
+                          __autocomplete_qsCategory: B
                         }, A));
                       }
                     } catch (ee) {
@@ -15437,8 +15446,8 @@ function f0(e, t) {
 
              <div>
              <h1>${O._highlightResult.title.value}</h1>            
-              <p class="price">${O.productID} - ${O.colorCode}</p>
-              <p class="price">WSP: ${O.currencyCode} ${O.wholesalePrice} - RSP: ${O.currencyCode} ${O.retailPrice}</p>
+              <p class="description">${O.productID} - ${O.colorCode}</p>
+              <p class="price">WSP: ${O.currencyCode} ${O.wholesalePrice} <br /> RSP: ${O.currencyCode} ${O.retailPrice}</p>
             </div>
             </a>
           `,
@@ -15469,61 +15478,62 @@ function f0(e, t) {
     }),
     ll({
       container: document.querySelector(".a4f-searchquery-container").shadowRoot.querySelector("#dynamic-widgets"),
-      fallbackWidget: ({ container: O, attribute: P }) => at({ templates: { header: P } })(
-        et
+      fallbackWidget: ({ container: O, attribute: P }) => Ze({ templates: { header: P } })(
+        tt
       )({ container: O, attribute: P }),
       widgets: [
-        (O) => at({ templates: { header: "Sub-Brand" } })(
-          et
+        (O) => Ze({ templates: { header: "Sub-Brand" } })(
+          tt
         )({
           container: O,
           attribute: "collectionId"
         }),
-        (O) => at({ templates: { header: "Series" } })(
-          et
+        (O) => Ze({ templates: { header: "Series" } })(
+          tt
         )({
           container: O,
           attribute: "userDefinedField2",
           showMore: !0,
           showMoreLimit: 150
         }),
-        (O) => at({ templates: { header: "Lifecycle" } })(
-          et
+        (O) => Ze({ templates: { header: "Lifecycle" } })(
+          tt
         )({
           container: O,
           attribute: "productGroupCode"
         }),
-        (O) => at({ templates: { header: "Segment" } })(
-          et
+        (O) => Ze({ templates: { header: "Segment" } })(
+          tt
         )({
           container: O,
           attribute: "collectionDesc"
         }),
-        (O) => at({ templates: { header: "Product Line" } })(
-          et
+        (O) => Ze({ templates: { header: "Product Line" } })(
+          tt
         )({
           container: O,
           attribute: "categories"
         }),
-        (O) => at({ templates: { header: "Color" } })(
-          et
+        (O) => Ze({ templates: { header: "Color" } })(
+          tt
         )({
           container: O,
           attribute: "simpleColor",
           limit: 20
         }),
-        (O) => at({ templates: { header: "Sizes" } })(
-          et
+        (O) => Ze({ templates: { header: "Sizes" } })(
+          tt
         )({
           container: O,
           attribute: "sizes",
           showMore: !0,
           showMoreLimit: 80
         }),
-        (O) => et({
+        (O) => Ze({ templates: { header: "Lifecycle" } })(
+          tt
+        )({
           container: O,
-          attribute: "lifecycle",
-          cssClasses: { checkbox: "lala" }
+          attribute: "lifecycle"
         })
       ]
     })
