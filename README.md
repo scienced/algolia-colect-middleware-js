@@ -37,7 +37,7 @@ npn run build
 
 ```html
 <!-- jsDelivr  -->
- <script src="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js/dist/algolia_colect_middelware.umd.js"></script> -->
+ <script src="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/algolia_colect_middelware.umd.js"></script> -->
 
 <!-- Usage -->
  <script >

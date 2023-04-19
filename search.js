@@ -8,6 +8,8 @@ import { createQuerySuggestionsPlugin } from '@algolia/autocomplete-plugin-query
 import { createLocalStorageRecentSearchesPlugin } from '@algolia/autocomplete-plugin-recent-searches';
 import { history } from 'instantsearch.js/es/lib/routers';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
+import { createAlgoliaInsightsPlugin } from '@algolia/autocomplete-plugin-algolia-insights';
+
 
 //Check Index availability, retrurn true if index is available, false otherwise
 async function indexAvail(options){
@@ -76,9 +78,9 @@ const virtualSearchBox = connectSearchBox(() => {});
             ${hit.image_link ? '<img class="zoom" style="max-width: 100%; max-height: 300px" src='+ hit.image_link +'>' : ''}
             ${hit.alt_image ? '<img class="zoom" style="max-width: 100%; max-height: 300px" src='+ hit.alt_image +'>' : ''}
 
-            ${(hit.productGroupCode ==='Outrunning') ? '<span class="btn-text white-txt uppercase space-no-wrap" style="background-color:#FFA500; padding: 0 16px; color: white;">' + hit.productGroupCode +'</span>' : ''}
-            ${(hit.productGroupCode ==='Pre-Sale') ? '<span class="btn-text white-txt uppercase space-no-wrap" style="background-color:#ff7a7a; padding: 0 16px; color: white;">' + hit.productGroupCode +'</span>' : ''}
-            ${(hit.productGroupCode ==='On-Stock') ? '' : ''}
+            ${(hit.sale != '') ? '<span class="btn-text white-txt uppercase space-no-wrap" style="background-color:#FFA500; padding: 0 16px; color: white;">' + hit.sale +'</span>' : ''}
+
+
           
 
              <div>

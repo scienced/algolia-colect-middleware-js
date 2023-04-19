@@ -1,3 +1,4 @@
+// import './style.css'
 export function setupModal(container, searchFieldId) {
   //build modal in dom
   const modalHtml = `

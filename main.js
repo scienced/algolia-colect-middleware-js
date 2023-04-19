@@ -1,6 +1,9 @@
+import '/styleroot.css'
 import { Search } from './search.js'
 
-export { Search }
+const acm = new Search(container, options)
+
+//export { Search }
 export default Search
 
-window.Search = Search;
+//window.Search = Search;
