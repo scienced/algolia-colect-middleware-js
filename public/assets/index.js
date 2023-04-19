@@ -1,5 +1,5 @@
 (function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))n(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const o of a.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&n(o)}).observe(document,{childList:!0,subtree:!0});function r(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function n(i){if(i.ep)return;i.ep=!0;const a=r(i);fetch(i.href,a)}})();function uf(e,t){const r=`
-      <link rel="stylesheet" type="text/css" href="http://127.0.0.1:5173/style.css">
+      <link rel="stylesheet" type="text/css" href="https://superlative-meringue-b70113.netlify.app/assets/style.css">
       
       <!-- search field -->
       <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Search for products" autocomplete="off">
