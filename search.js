@@ -71,7 +71,7 @@ const virtualSearchBox = connectSearchBox(() => {});
           container: results,
           templates: {
           item: (hit, bindEvent) =>  `
-            <a href="${hit.link}" ${bindEvent('click', hit, 'pdp clicked')}>
+            <a href="/webstore/v2/product/${options.customerCollection}/${hit.productID}/${hit.colorCode}" ${bindEvent('click', hit, 'pdp clicked')}>
             <div class="card">
             
             

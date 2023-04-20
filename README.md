@@ -6,9 +6,9 @@ Integrate Algolia search functionality in the [Colect.io](https://www.colect.io/
 - Search modal with filtering and autocomplete suggestions
 - Overrides excisting search container
 - Checks if Algolia index is available before injecting itself
-- Standalone JS library
+- CDN for JS & CSS code 
 - Shadow Dom to isolate itself from existing html/css/js
-- Custom styling 
+- Custom styling (pending)
 
 ## Demo (pending)
 
@@ -36,20 +36,20 @@ npn run build
 ## CDN (to be finalised)
 
 ```html
-<!-- jsDelivr  -->
- <script src="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/algolia_colect_middelware.umd.js"></script> -->
+<!-- Netlify CDN  -->
+<script type="module" crossorigin src="https://superlative-meringue-b70113.netlify.app/assets/index.js"></script>
+<link rel="stylesheet" href="https://superlative-meringue-b70113.netlify.app/assets/index.css">
 
 <!-- Usage -->
  <script >
-     const container = document.querySelector('.placeholder')
-     const options = {
+     var container = document.querySelector('.placeholder')
+     var options = {
       customerCollection: "placeholder",
       customerLanguage: "placeholder",
       customerId: "placeholder",
       algoliaApplicationId: "placeholder",
       algoliaApiKey: "placeholder",
     }
-  const acm = new Search(container, options)
  </script>
 ```
 

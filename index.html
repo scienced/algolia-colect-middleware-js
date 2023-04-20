@@ -2,7 +2,6 @@
 <html lang="en">
    <head>
       <meta charset="UTF-8" />
-      <link rel="icon" type="image/svg+xml" href="/vite.svg" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Algolia-Colect-frontend-middleware</title>
    </head>
@@ -35,14 +34,13 @@
       <!-- when using the UDM module
          <script src="./dist/algolia_colect_middelware.umd.js"></script> -->
       <!-- styling only needed for the Algolia Autocomplete pop-up, which lives outside of the shadow dom (for now) -->
-       <script type="module">
-          import Search from './main.js';
-       </script>
+       <script type="module" src="./main.js"></script>
+ 
 
         <script>
          const container = document.querySelector('.a4f-searchquery-container')
          const options = {
-          customerCollection: "PL_TriumphTEST",
+          customerCollection: "BE_sloggiTEST",
           customerLanguage: "EN",
           customerId: "434783",
           algoliaApplicationId: "E8HZJUFDQU",

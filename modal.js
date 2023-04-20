@@ -1,13 +1,18 @@
 // import './style.css'
+//import cssUrl from './style.css'
+const cssUrl = new URL('./style.css', import.meta.url).href
+
 export function setupModal(container, searchFieldId) {
   //build modal in dom
+
+  console.log(cssUrl)
   const modalHtml = `
-      <link rel="stylesheet" type="text/css" href="/style.css">
+       <link rel="stylesheet" type="text/css" href="${cssUrl}">
       
       <!-- search field -->
       <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Search for products" autocomplete="off">
       <!-- The Modal -->
-      <div id="acm-modal" class="modal">
+      <div id="acm-modal" class="modal" style="display:none;">
         <!-- Modal content -->
         <div class="modal-content">
           <div style="display: flex; justify-content: flex-end">
