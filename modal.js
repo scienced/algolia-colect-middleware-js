@@ -2,7 +2,7 @@
 //import cssUrl from './style.css'
 const cssUrl = new URL('./style.css', import.meta.url).href
 
-export function setupModal(container, searchFieldId) {
+export function setupModal(options) {
   //build modal in dom
 
   console.log(cssUrl)
@@ -46,7 +46,7 @@ export function setupModal(container, searchFieldId) {
       `;
   // searchFieldId.insertAdjacentHTML("beforeend", modalHtml);
 
-  var div = document.querySelector('.a4f-searchquery-container');
+  var div = document.querySelector(options.container);
   var shadowRoot = div.attachShadow({ mode: 'open' });
   shadowRoot.innerHTML = modalHtml;
 

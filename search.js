@@ -34,10 +34,10 @@ const search = instantsearch({
   routing: true,
 });
 
-var statie = document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#stats')
-var banner = document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#banner')
-var results = document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#hits')
-var clear = document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#clear')
+var statie = document.querySelector(options.container).shadowRoot.querySelector('#stats')
+var banner = document.querySelector(options.container).shadowRoot.querySelector('#banner')
+var results = document.querySelector(options.container).shadowRoot.querySelector('#hits')
+var clear = document.querySelector(options.container).shadowRoot.querySelector('#clear')
 
 
 const virtualSearchBox = connectSearchBox(() => {});
@@ -117,7 +117,7 @@ const virtualSearchBox = connectSearchBox(() => {});
         }),
 
   dynamicWidgets({
-    container: document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#dynamic-widgets'),
+    container: document.querySelector(options.container).shadowRoot.querySelector('#dynamic-widgets'),
 
     fallbackWidget: ({ container, attribute }) =>
     panel({ templates: { header: attribute } })(
@@ -224,7 +224,7 @@ search.start();
       });
 
       const { setQuery } = autocomplete({
-        container: document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#autocomplete'),
+        container: document.querySelector(options.container).shadowRoot.querySelector('#autocomplete'),
         placeholder: 'Search for products',
 
         plugins: [querySuggestionsPlugin, recentSearchesPlugin],
@@ -265,27 +265,27 @@ search.start();
       //show modal if url has a search parameter
       document.addEventListener("DOMContentLoaded", function(event) {
         if (searchPageState.query) {
-          document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#acm-modal').style.display = "block";
-          //document.querySelector('.a4f-searchquery-container').shadowRoot.querySelector('#acm-searchfield').value = searchPageState.query;
+          document.querySelector(options.container).shadowRoot.querySelector('#acm-modal').style.display = "block";
+          //document.querySelector(options.container).shadowRoot.querySelector('#acm-searchfield').value = searchPageState.query;
          // modal.style.display = "block";
         }
       });
 
 }
 
-async function init(container, options) {
-  await setupModal('container',container)
+async function init(options) {
+  await setupModal(options)
   console.log('Finished building the modal, starting up Algolia now');
-  setupAcm(options, container)
+  setupAcm(options)
 }
 
 
 export class Search {
 
-  constructor(container, options) {
+  constructor(options) {
     indexAvail(options).then((response) => {
       if (response) {
-        init(container, options);    
+        init(options);    
       }
       else {
         console.log("Index not found on Algolia - search field not overriden")
