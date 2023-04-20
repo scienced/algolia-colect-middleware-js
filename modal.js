@@ -7,7 +7,7 @@ export function setupModal(options) {
 
   console.log(cssUrl)
   const modalHtml = `
-       <link rel="stylesheet" type="text/css" href="${cssUrl}">
+       <link rel="stylesheet" type="text/css" href="https://superlative-meringue-b70113.netlify.app/assets/style.css">
       
       <!-- search field -->
       <input type="text" name="q" value="" class="acm-searchquery" id="acm-searchfield" placeholder="Search for products" autocomplete="off">
