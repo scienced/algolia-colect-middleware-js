@@ -1,3 +1,5 @@
+[![](https://data.jsdelivr.com/v1/package/gh/scienced/algolia-colect-middleware-js/badge)](https://www.jsdelivr.com/package/gh/scienced/algolia-colect-middleware-js)
+
 ##  A simple frontend middleware for Algolia & Colect
 Integrate Algolia search functionality in the [Colect.io](https://www.colect.io/) brand portal frontend. 
 
@@ -39,6 +41,8 @@ npn run build
 <!-- Netlify CDN  -->
 <script type="module" crossorigin src="https://superlative-meringue-b70113.netlify.app/assets/index.js"></script>
 <link rel="stylesheet" href="https://superlative-meringue-b70113.netlify.app/assets/index.css">
+
+https://jsdelivr.com/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/index.js
 
 <!-- Usage -->
  <script >
