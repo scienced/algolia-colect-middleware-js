@@ -8,7 +8,9 @@ import { createQuerySuggestionsPlugin } from '@algolia/autocomplete-plugin-query
 import { createLocalStorageRecentSearchesPlugin } from '@algolia/autocomplete-plugin-recent-searches';
 import { history } from 'instantsearch.js/es/lib/routers';
 import { connectSearchBox } from 'instantsearch.js/es/connectors';
-import { createAlgoliaInsightsPlugin } from '@algolia/autocomplete-plugin-algolia-insights';
+//import { createAlgoliaInsightsPlugin } from '@algolia/autocomplete-plugin-algolia-insights';
+import { createInsightsMiddleware } from 'instantsearch.js/es/middlewares';
+import aa from 'search-insights';
 
 
 //Check Index availability, retrurn true if index is available, false otherwise
@@ -34,10 +36,18 @@ const search = instantsearch({
   routing: true,
 });
 
-var statie = document.querySelector(options.container).shadowRoot.querySelector('#stats')
-var banner = document.querySelector(options.container).shadowRoot.querySelector('#banner')
-var results = document.querySelector(options.container).shadowRoot.querySelector('#hits')
-var clear = document.querySelector(options.container).shadowRoot.querySelector('#clear')
+const insightsMiddleware = createInsightsMiddleware({
+  insightsClient: aa,
+});
+
+search.use(insightsMiddleware);
+aa('setUserToken', options.customerId);
+
+
+var statie = document.querySelector('#acm_js').shadowRoot.querySelector('#stats')
+var banner = document.querySelector('#acm_js').shadowRoot.querySelector('#banner')
+var results = document.querySelector('#acm_js').shadowRoot.querySelector('#hits')
+var clear = document.querySelector('#acm_js').shadowRoot.querySelector('#clear')
 
 
 const virtualSearchBox = connectSearchBox(() => {});
@@ -73,16 +83,12 @@ const virtualSearchBox = connectSearchBox(() => {});
           item: (hit, bindEvent) =>  `
             <a href="/webstore/v2/product/${options.customerCollection}/${hit.productID}/${hit.colorCode}" ${bindEvent('click', hit, 'pdp clicked')}>
             <div class="card">
-            
-            
-            ${hit.image_link ? '<img class="zoom" style="max-width: 100%; max-height: 300px" src='+ hit.image_link +'>' : ''}
-            ${hit.alt_image ? '<img class="zoom" style="max-width: 100%; max-height: 300px" src='+ hit.alt_image +'>' : ''}
+
+            <img srcset="${hit.image_link}" src="https://colect-uploads.s3.eu-west-1.amazonaws.com/backend/kDhEtBJWgRJJshry.png" class="zoom" style="max-width: 100%; max-height: 300px" onerror="this.onerror = null;this.srcset = this.src;" />
+            <img srcset="${hit.alt_image}" src="https://colect-uploads.s3.eu-west-1.amazonaws.com/backend/kDhEtBJWgRJJshry.png" class="zoom" style="max-width: 100%; max-height: 300px" onerror="this.onerror = null;this.srcset = this.src;" />            
+           
 
             ${(hit.sale != '') ? '<span class="btn-text white-txt uppercase space-no-wrap" style="background-color:#FFA500; padding: 0 16px; color: white;">' + hit.sale +'</span>' : ''}
-
-
-          
-
              <div>
              <h1>${hit._highlightResult.title.value}</h1>            
               <p class="description">${hit.productID} - ${hit.colorCode}</p>
@@ -91,33 +97,13 @@ const virtualSearchBox = connectSearchBox(() => {});
             </a>
           `,
           empty: `<div>We are sorry but there are no results for your search <strong>"{{ query }}"</strong></div>
-          <br>
-          <div class="js-no-result-search-suggestion">
-            <div class="offset-1 flex--col">
-                <div class="flex--col ">
-                    <h2>Suggestions</h2>
-                </div>
-                <button class="flex flex--coll">
-                    <a href="?PL_TriumphTEST%5Bquery%5D=amourette">Amourette</a>
-                </button>
-                 <button class="flex flex--coll">
-                    <a href="?PL_TriumphTEST%5Bquery%5D=signature%20sheer">Signature Sheer</a>
-                </button>
-                 <button class="flex flex--coll">
-                    <a href="?PL_TriumphTEST%5Bquery%5D=lift%20smart">Lift Smart</a>
-                </button>
-                <br>
-                <a href="#">
-                <img style="margin-top:30px;" src=https://images.cmft.io/1115457393585688576/1575458344662081536/1575458344683053056/Frame_1518.jpg />
-                </a>     
-            </div>
-        </div>
+          
           `
         },
         }),
 
   dynamicWidgets({
-    container: document.querySelector(options.container).shadowRoot.querySelector('#dynamic-widgets'),
+    container: document.querySelector('#acm_js').shadowRoot.querySelector('#dynamic-widgets'),
 
     fallbackWidget: ({ container, attribute }) =>
     panel({ templates: { header: attribute } })(
@@ -224,7 +210,7 @@ search.start();
       });
 
       const { setQuery } = autocomplete({
-        container: document.querySelector(options.container).shadowRoot.querySelector('#autocomplete'),
+        container: document.querySelector('#acm_js').shadowRoot.querySelector('#autocomplete'),
         placeholder: 'Search for products',
 
         plugins: [querySuggestionsPlugin, recentSearchesPlugin],
@@ -275,7 +261,7 @@ search.start();
 
 async function init(options) {
   await setupModal(options)
-  console.log('Finished building the modal, starting up Algolia now');
+  console.log('Finished building the search modal, starting up Algolia now');
   setupAcm(options)
 }
 

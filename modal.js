@@ -1,11 +1,10 @@
 // import './style.css'
 //import cssUrl from './style.css'
-const cssUrl = new URL('./style.css', import.meta.url).href
+const cssUrl = new URL('./style.css', import.meta.url).href;
 
 export function setupModal(options) {
   //build modal in dom
 
-  console.log(cssUrl)
   const modalHtml = `
        <link rel="stylesheet" type="text/css" href="https://superlative-meringue-b70113.netlify.app/assets/style.css">
       
@@ -46,7 +45,13 @@ export function setupModal(options) {
       `;
   // searchFieldId.insertAdjacentHTML("beforeend", modalHtml);
 
-  var div = document.querySelector(options.container);
+  var div2 = document.querySelector(options.container);
+  div2.outerHTML = `
+       <div id="acm_js"></div>
+       `;
+
+  var div = document.querySelector("#acm_js");
+      
   var shadowRoot = div.attachShadow({ mode: 'open' });
   shadowRoot.innerHTML = modalHtml;
 
