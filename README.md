@@ -13,7 +13,6 @@ Integrate Algolia search functionality in the [Colect.io](https://www.colect.io/
 - Custom styling (pending)
 - Custom "no results" html (pending)
 - Integrated Algolia insights
-- 
 
 ## Demo (pending)
 
