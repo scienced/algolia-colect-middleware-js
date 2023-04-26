@@ -10,8 +10,7 @@ Integrate Algolia search functionality in the [Colect.io](https://www.colect.io/
 - Checks if Algolia index is available before injecting itself
 - Up to 2 product images supported including "no image" placeholder
 - Shadow Root to isolate itself from existing html/css/js
-- Custom styling (pending)
-- Custom "no results" html (pending)
+- Custom styling & "no results" html (pending)
 - Integrated Algolia insights
 
 ## Demo (pending)
