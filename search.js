@@ -85,7 +85,8 @@ const virtualSearchBox = connectSearchBox(() => {});
             <div class="card">
 
             <img srcset="${hit.image_link}" src="https://colect-uploads.s3.eu-west-1.amazonaws.com/backend/kDhEtBJWgRJJshry.png" class="zoom" style="max-width: 100%; max-height: 300px" onerror="this.onerror = null;this.srcset = this.src;" />
-            <img srcset="${hit.alt_image}" src="https://colect-uploads.s3.eu-west-1.amazonaws.com/backend/kDhEtBJWgRJJshry.png" class="zoom" style="max-width: 100%; max-height: 300px" onerror="this.onerror = null;this.srcset = this.src;" />            
+
+            ${(hit.alt_image === undefined) ? '' : '<img src="' + hit.alt_image + '" class="zoom" style="max-width: 100%; max-height: 300px" /> '}           
            
 
             ${(hit.sale != '') ? '<span class="btn-text white-txt uppercase space-no-wrap" style="background-color:#FFA500; padding: 0 16px; color: white;">' + hit.sale +'</span>' : ''}

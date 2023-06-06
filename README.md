@@ -41,7 +41,7 @@ npm run build
 ```html
 <!-- Jsdelivr CDN  -->
 <script type="module" crossorigin src="https://jsdelivr.com/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/index.js"></script>
-<link rel="stylesheet" href="https://jsdelivr.com/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/style.css">
 
 <!-- Usage -->
 <script>
@@ -51,7 +51,7 @@ npm run build
           customerId: "[[customer:customerNo]]",
           algoliaApplicationId: "XXXXXXXX",
           algoliaApiKey: "xxxxxxxxxxxxxxxxxxxx",
-          container: ".search-button"
+          container: ".search_button"
          }
          window.options = options;
       </script>

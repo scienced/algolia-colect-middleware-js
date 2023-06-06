@@ -5,7 +5,7 @@ const cssUrl = new URL('./style.css', import.meta.url).href;
 export function setupModal(options) {
 
   const modalHtml = `
-       <link rel="stylesheet" type="text/css" href="https://superlative-meringue-b70113.netlify.app/assets/style.css">
+       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/style.css">
       
       <!-- search field -->
       <span class="aa-Form acm-box">

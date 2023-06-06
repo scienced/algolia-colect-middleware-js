@@ -1,5 +1,5 @@
 (function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const i of document.querySelectorAll('link[rel="modulepreload"]'))n(i);new MutationObserver(i=>{for(const a of i)if(a.type==="childList")for(const o of a.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&n(o)}).observe(document,{childList:!0,subtree:!0});function r(i){const a={};return i.integrity&&(a.integrity=i.integrity),i.referrerPolicy&&(a.referrerPolicy=i.referrerPolicy),i.crossOrigin==="use-credentials"?a.credentials="include":i.crossOrigin==="anonymous"?a.credentials="omit":a.credentials="same-origin",a}function n(i){if(i.ep)return;i.ep=!0;const a=r(i);fetch(i.href,a)}})();new URL("/assets/style.css",self.location).href;function Af(e){const t=`
-       <link rel="stylesheet" type="text/css" href="https://superlative-meringue-b70113.netlify.app/assets/style.css">
+       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/style.css">
       
       <!-- search field -->
       <span class="aa-Form acm-box">
@@ -138,7 +138,8 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
             <div class="card">
 
             <img srcset="${O.image_link}" src="https://colect-uploads.s3.eu-west-1.amazonaws.com/backend/kDhEtBJWgRJJshry.png" class="zoom" style="max-width: 100%; max-height: 300px" onerror="this.onerror = null;this.srcset = this.src;" />
-            <img srcset="${O.alt_image}" src="https://colect-uploads.s3.eu-west-1.amazonaws.com/backend/kDhEtBJWgRJJshry.png" class="zoom" style="max-width: 100%; max-height: 300px" onerror="this.onerror = null;this.srcset = this.src;" />            
+
+            ${O.alt_image===void 0?"":'<img src="'+O.alt_image+'" class="zoom" style="max-width: 100%; max-height: 300px" /> '}           
            
 
             ${O.sale!=""?'<span class="btn-text white-txt uppercase space-no-wrap" style="background-color:#FFA500; padding: 0 16px; color: white;">'+O.sale+"</span>":""}

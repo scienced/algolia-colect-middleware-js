@@ -19,10 +19,29 @@
          </form>
       </a>
       <br>
+      <ul>
+      <li><a href="/?location=DE_sloggiPROD">DE_sloggiPROD</a></li>
+      <li><a href="/?location=DE_TriumphPROD">DE_TriumphPROD</a></li>
+      <li><a href="/?location=AT_TriumphPROD">AT_TriumphPROD</a></li>
+      <li><a href="/?location=AT_sloggiPROD">AT_sloggiPROD</a></li>
+      <li><a href="/?location=IT_sloggiPROD">IT_sloggiPROD</a></li>
+      <li><a href="/?location=IT_TriumphPROD">IT_TriumphPROD</a></li>
+      <li><a href="/?location=BE_sloggiPROD">BE_sloggiPROD</a></li>
+      <li><a href="/?location=BE_TriumphPROD">BE_TriumphPROD</a></li>
+      <li><a href="/?location=BE_sloggiPROD">BE_sloggiPROD</a></li>
+     <li><a href="/?location=HU_TriumphPROD">HU_TriumphPROD</a></li>
+      <li><a href="/?location=HU_sloggiPROD">HU_sloggiPROD</a></li>
+   </ul>
+
+                       
+          
+               
+             
+
 
 
       <hr>
-      <p><strong>Algolia-Colect-middleware-js </strong>Version 0.4.9</p>
+      <p><strong>Algolia-Colect-middleware-js </strong>Version LATEST</p>
       Pending features:
       <ul>
          <h3>Basics</h3>
@@ -34,13 +53,20 @@
 
        <script type="module" src="./main.js"></script>
 
+       <!--<script type="module" crossorigin src="https://jsdelivr.com/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/index.js"></script>-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/style.css">
+
         <script>
+
+         const PAGELOCATION = new URLSearchParams(window.location.search).get('location')
+          const CUSTOMERLANGUAGE = new URLSearchParams(window.location.search).get('locale')
+
          var options = {
-          customerCollection: "DE_TriumphTEST",
+          customerCollection: `${PAGELOCATION}`,
           customerLanguage: "EN",
           customerId: "434783",
-          algoliaApplicationId: "E8HZJUFDQU",
-          algoliaApiKey: "2eab4588c570c21e4ef0e93c7483c45a",
+          algoliaApplicationId: "0DFGSLJWH6",
+          algoliaApiKey: "8f7de09f5e2429d62da6af80c4f60078",
           container: ".search_button"
          }
          window.options = options;
