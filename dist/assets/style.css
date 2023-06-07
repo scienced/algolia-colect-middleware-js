@@ -1,0 +1,344 @@
+@import url('https://cdn.jsdelivr.net/npm/@algolia/autocomplete-theme-classic');
+@import url('https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css');
+
+:host {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  -webkit-text-size-adjust: 100%;
+  --aa-search-input-height: 44px;
+  --aa-input-icon-size: 20px;
+  --aa-base-unit: 16;
+  --aa-spacing-factor: 1;
+  --aa-spacing: calc(var(--aa-base-unit) * var(--aa-spacing-factor) * 1px);
+  --aa-spacing-half: calc(var(--aa-spacing) / 2);
+  --aa-panel-max-height: 650px;
+  --aa-base-z-index: 9999;
+  --aa-font-size: calc(var(--aa-base-unit) * 1px);
+  --aa-font-family: inherit;
+  --aa-font-weight-medium: 500;
+  --aa-font-weight-semibold: 600;
+  --aa-font-weight-bold: 700;
+  --aa-icon-size: 20px;
+  --aa-icon-stroke-width: 1.6;
+  --aa-icon-color-rgb: 32, 32, 32;
+  --aa-icon-color-alpha: 0.19;
+  --aa-action-icon-size: 50px;
+  --aa-text-color-rgb: 38, 38, 39;
+  --aa-text-color-alpha: 1;
+  --aa-primary-color-rgb: 0, 0, 0;
+  --aa-primary-color-alpha: 0.09;
+  --aa-muted-color-rgb: 128, 126, 163;
+  --aa-muted-color-alpha: 0.6;
+  --aa-panel-border-color-rgb: 128, 126, 163;
+  --aa-panel-border-color-alpha: 0.3;
+  --aa-input-border-color-rgb: 128, 126, 163;
+  --aa-input-border-color-alpha: 0.8;
+  --aa-background-color-rgb: 255, 255, 255;
+  --aa-background-color-alpha: 1;
+  --aa-input-background-color-rgb: 255, 255, 255;
+  --aa-input-background-color-alpha: 1;
+  --aa-selected-color-rgb: 179, 173, 214;
+  --aa-selected-color-alpha: 0.205;
+  --aa-description-highlight-background-color-rgb: 245, 223, 77;
+  --aa-description-highlight-background-color-alpha: 0.5;
+  --aa-detached-media-query: (max-width: 680px);
+  --aa-detached-modal-media-query: (min-width: 680px);
+  --aa-detached-modal-max-width: 680px;
+  --aa-detached-modal-max-height: 500px;
+  --aa-overlay-color-rgb: 115, 114, 129;
+  --aa-overlay-color-alpha: 0.4;
+  --aa-panel-shadow: 0 0 0 1px rgba(232, 3, 53, 0.1), 0 6px 16px -4px rgba(232, 3, 53, 0.15);
+  --aa-scrollbar-width: 13px;
+  --aa-scrollbar-track-background-color-rgb: 234, 234, 234;
+  --aa-scrollbar-track-background-color-alpha: 1;
+  --aa-scrollbar-thumb-background-color-rgb: var(--aa-background-color-rgb);
+  --aa-scrollbar-thumb-background-color-alpha: 1;
+  --first-image: block;
+  --second-image: none;
+  --primary-color: #000;
+  --primary-color-contrast: #fff;
+  --secondary-color: #e8033530;
+
+}
+
+.acm-box {
+  max-width: 251px;
+}
+
+
+.ais-Breadcrumb, .ais-ClearRefinements, .ais-CurrentRefinements, .ais-GeoSearch, .ais-HierarchicalMenu, .ais-Hits, .ais-HitsPerPage, .ais-InfiniteHits, .ais-InfiniteResults, .ais-Menu, .ais-MenuSelect, .ais-NumericMenu, .ais-NumericSelector, .ais-Pagination, .ais-Panel, .ais-PoweredBy, .ais-RangeInput, .ais-RangeSlider, .ais-RatingMenu, .ais-RefinementList, .ais-Results, .ais-ResultsPerPage, .ais-SearchBox, .ais-SortBy, .ais-Stats, .ais-ToggleRefinement {
+    color: var(--primary-color);
+}
+
+/* Algolia overwrites */
+.aa-Form {
+  border-radius: 40px;
+}
+
+.ais-Panel-header {
+  border-bottom: 0px;
+}
+
+.ais-Panel {
+  margin-top: 25px;
+}
+
+.ais-RefinementList-showMore,
+.ais-RefinementList-showMore:focus,
+.ais-ClearRefinements-button {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color-contrast);
+  border-radius: 0px;
+  color: #fff;
+  transition: all .2s ease;
+}
+
+.ais-RefinementList-showMore:hover,
+.ais-ClearRefinements-button:hover {
+  background-color: var(--primary-color-contrast);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  transition: all .2s ease;
+}
+
+.ais-ClearRefinements-button[disabled], .ais-RefinementList-showMore[disabled]:hover {
+  background-color: white;
+   display: none;
+}
+
+.ais-RefinementList-showMore[disabled], .ais-RefinementList-showMore[disabled]:hover {
+  display: none;
+}
+
+/* The search modal */
+.modal {
+  all: unset;
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 900;
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 30px auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 10px;
+  width: 93%; /* Could be more or less, depending on screen size */
+}
+
+/* The modal Close Button */
+#acm-close {
+  width: 17px;
+  height: 32px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+#acm-close:hover {
+  opacity: 1;
+}
+
+/* Product card design */
+.card {
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card h1 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  color: black;
+  text-align: left;
+  margin-top: 16px;
+  min-height: 44px;
+}
+
+/* Algolia seaech results (hits) css overrides*/
+.ais-Hits-item,
+.ais-InfiniteHits-item,
+.ais-InfiniteResults-item,
+.ais-Results-item {
+  width: 220px;
+  border: 0;
+  background-color: white;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+mark {
+  background-color: var(--secondary-color);
+}
+
+.ais-QueryRuleCustomData {
+  max-height: 343px;
+  overflow: hidden;
+  /* width: 100%; */
+  margin-bottom: 1rem;
+}
+
+.ais-QueryRuleCustomData img {
+  width: 100%;
+}
+
+/* SIDE BAR CSS */
+.with-sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.with-sidebar > :first-child {
+  flex-grow: 1;
+}
+
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-inline-size: 50%;
+}
+
+.card {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.ais-Hits-list {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, 220px);
+  justify-content: space-between;
+}
+
+.zoom {
+  width: 220px;
+  height: 240px;
+  object-fit: contain;
+  object-position: center center;
+}
+
+.zoom:nth-child(1) {
+  display: var(--first-image);
+}
+
+.zoom:nth-child(2) {
+  display: var(--second-image);
+}
+
+.zoom:last-of-type:first-child {
+  display: block !important;
+}
+
+.card:hover {
+  --first-image: none;
+  --second-image: block;
+}
+
+.btn-text {
+  line-height: 28px;
+  padding: 0 12px !important;
+  font-size: 14px;
+  position: absolute;
+  left: 0;
+  top: 212px;
+}
+
+.description {
+  margin-top: 4px;
+  margin-bottom: 0;
+  color: #0a0002;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: start;
+}
+
+.price {
+  color: #777172;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: start;
+  margin-bottom: 0;
+  margin-top: 12px;
+}
+
+.ais-RefinementList-item {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.ais-RefinementList-label {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 24px;
+}
+
+.ais-RefinementList-checkbox {
+  margin: 0;
+}
+
+input[type='checkbox'] {
+  position: relative;
+  cursor: pointer;
+  width: 18px;
+}
+
+input[type='checkbox']:before {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: -2px;
+  left: 0;
+  border: 1px solid #c6c6ca;
+  border-radius: 2px;
+  padding: 1px;
+  background-color: #ffffff;
+}
+
+input[type='checkbox']:checked:before {
+  border: 1px solid var(--primary-color);
+}
+
+input[type='checkbox']:checked:before {
+  background-color: var(--primary-color);
+}
+
+input[type='checkbox']:checked:after {
+  content: '';
+  display: block;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  position: absolute;
+  top: 0px;
+  left: 6px;
+}
