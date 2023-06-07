@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Algolia-Colect-frontend-middleware</title>
+     <script type="module" crossorigin src="/assets/index.js"></script>
+   </head>
+   <body>
+      Original Colect V2 search field:
+      <a class="search_button hide-lg-down nav--link nav-bar reset-scroll">
+         <!-- START-CONTENTBLOCK:search -->
+         <form id="_sf_158965797" class="w3-container a4f-form a4f-searchform" method="GET" action="/webstore/v2/search">
+            <div class="a4f-searchquery-container2">
+               <span role="status" aria-live="polite" class="ui-helper-hidden-accessible"></span><input type="text" name="q" value="" class="w3-input w3-border a4f-searchquery ui-autocomplete-input" autocomplete="off" placeholder="search">
+            </div>
+            <div class="a4f-searchbutton-container">
+               <button class="a4f-googlematerial a4f-searchbutton" type="submit" style="display: none;"></button>
+            </div>
+         </form>
+      </a>
+      <br>
+      <ul>
+      <li><a href="/?location=DE_sloggiPROD">DE_sloggiPROD</a></li>
+      <li><a href="/?location=DE_TriumphPROD">DE_TriumphPROD</a></li>
+      <li><a href="/?location=AT_TriumphPROD">AT_TriumphPROD</a></li>
+      <li><a href="/?location=AT_sloggiPROD">AT_sloggiPROD</a></li>
+      <li><a href="/?location=IT_sloggiPROD">IT_sloggiPROD</a></li>
+      <li><a href="/?location=IT_TriumphPROD">IT_TriumphPROD</a></li>
+      <li><a href="/?location=BE_sloggiPROD">BE_sloggiPROD</a></li>
+      <li><a href="/?location=BE_TriumphPROD">BE_TriumphPROD</a></li>
+      <li><a href="/?location=BE_sloggiPROD">BE_sloggiPROD</a></li>
+     <li><a href="/?location=HU_TriumphPROD">HU_TriumphPROD</a></li>
+      <li><a href="/?location=HU_sloggiPROD">HU_sloggiPROD</a></li>
+   </ul>
+
+      <hr>
+      <p><strong>Algolia-Colect-middleware-js </strong>Version LATEST</p>
+      Pending features:
+      <ul>
+         <h3>Basics</h3>
+         <li>External "no results"</li>
+         <li>Auto popup with url parameters</li>
+         <li>Add fixed Algolia links (low prio)</li>
+      </ul>
+      </div>
+
+      <!-- <script type="module" src="./main.js"></script> -->
+
+<script type="module" crossorigin src="https://jsdelivr.com/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/index.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/scienced/algolia-colect-middleware-js@latest/dist/assets/style.css">
+
+        <script>
+
+         const PAGELOCATION = new URLSearchParams(window.location.search).get('location')
+          const CUSTOMERLANGUAGE = new URLSearchParams(window.location.search).get('locale')
+
+         var options = {
+          customerCollection: `${PAGELOCATION}`,
+          customerLanguage: "EN",
+          customerId: "434783",
+          algoliaApplicationId: "0DFGSLJWH6",
+          algoliaApiKey: "8f7de09f5e2429d62da6af80c4f60078",
+          container: ".search_button"
+         }
+         window.options = options;
+      </script>
+
+   </body>
+</html>
