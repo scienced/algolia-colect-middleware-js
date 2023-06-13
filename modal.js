@@ -20,7 +20,7 @@ export function setupModal(options) {
             </label>
          </div>
          <div class="aa-InputWrapper">
-            <input class="aa-Input acm-searchquery" aria-autocomplete="both" aria-labelledby="autocomplete-0-label" id="acm-searchfield" autocomplete="off" autocorrect="off" autocapitalize="off" enterkeyhint="search" spellcheck="false" placeholder="Search for products" maxlength="512" type="search">
+            <input class="aa-original aa-Input acm-searchquery" aria-autocomplete="both" aria-labelledby="autocomplete-0-label" id="acm-searchfield" autocomplete="off" autocorrect="off" autocapitalize="off" enterkeyhint="search" spellcheck="false" placeholder="Search for products" maxlength="512" type="search">
          </div>
       </span>
 
@@ -78,6 +78,9 @@ export function setupModal(options) {
   var input = shadowRoot.getElementById('acm-searchfield');
   input.onfocus = function () {
     modal.style.display = 'block';
+    
+    //put input focus on Algolia search input field
+    shadowRoot.querySelector('#autocomplete-0-input').focus()
     document.body.style.overflow = 'hidden';
     document.getElementsByTagName('html')[0].style.overflow = 'hidden';
   };
