@@ -33,7 +33,31 @@ const index = searchClient.initIndex(options.customerCollection);
 const search = instantsearch({
   indexName: options.customerCollection,
   searchClient,
-  routing: true,
+  routing: {
+    router: history({
+      createURL({ qsModule, location, routeState }) {
+        const indexState = routeState[options.customerCollection] || {};
+        const { origin, pathname, hash, search } = location;
+        // grab current query string, remove the trailing `?` and convert to object
+        const queryParameters = qsModule.parse(search.slice(1)) || {};
+
+        // if there is an active search
+        if (Object.keys(indexState).length ){
+          // merge the search params with the current query params
+          Object.assign(queryParameters, routeState);
+        }else{
+          // remove the search params
+          delete queryParameters[options.customerCollection];
+        }
+        let queryString = qsModule.stringify(queryParameters);
+
+        if(queryString.length){
+          queryString = `?${queryString}`;
+        }
+        return `${origin}${pathname}${queryString}${hash}`;
+      },
+    })
+    },
 });
 
 const insightsMiddleware = createInsightsMiddleware({
