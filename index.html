@@ -6,7 +6,10 @@
       <title>Algolia-Colect-frontend-middleware</title>
    </head>
    <body>
-      Original Colect V2 search field:
+      <h1>algolia-colect-middleware-js testing page</h1>
+      <hr>
+      <h2>Search box </h2>
+      Original Colect Webstore V2 search field:
       <a class="search_button hide-lg-down nav--link nav-bar reset-scroll">
          <!-- START-CONTENTBLOCK:search -->
          <form id="_sf_158965797" class="w3-container a4f-form a4f-searchform" method="GET" action="/webstore/v2/search">
@@ -18,31 +21,43 @@
             </div>
          </form>
       </a>
+      
       <br>
-      <ul>
-      <li><a href="/?location=DE_sloggiPROD">DE_sloggiPROD</a></li>
-      <li><a href="/?location=DE_TriumphPROD">DE_TriumphPROD</a></li>
-      <li><a href="/?location=AT_TriumphPROD">AT_TriumphPROD</a></li>
-      <li><a href="/?location=AT_sloggiPROD">AT_sloggiPROD</a></li>
-      <li><a href="/?location=IT_sloggiPROD">IT_sloggiPROD</a></li>
-      <li><a href="/?location=IT_TriumphPROD">IT_TriumphPROD</a></li>
-      <li><a href="/?location=BE_sloggiPROD">BE_sloggiPROD</a></li>
-      <li><a href="/?location=BE_TriumphPROD">BE_TriumphPROD</a></li>
-      <li><a href="/?location=BE_sloggiPROD">BE_sloggiPROD</a></li>
-     <li><a href="/?location=HU_TriumphPROD">HU_TriumphPROD</a></li>
-      <li><a href="/?location=HU_sloggiPROD">HU_sloggiPROD</a></li>
-   </ul>
+      <hr>
+      <h2>Algolia keys setup</h2>
+      <p>This test page needs three Algolia items to work. You can also add the items manual via url properties.</p>
+      <div>Algolia Application ID:
+      <input name="searchTxt" type="text" maxlength="512" id="appid" class="searchField"/>
+      </div>
+      <div>Algolia API Key:
+      <input name="searchTxt" type="text" maxlength="512" id="apikey" class="searchField"/>
+      </div>
+      <div>Index:
+      <input name="searchTxt" type="text" maxlength="512" id="index" class="searchField"/>
+   </div>
+      <input type="button" value="Apply" OnClick="kk()"/>
+      <br>
+
 
       <hr>
-      <p><strong>Algolia-Colect-middleware-js </strong>Version LATEST</p>
-      Pending features:
-      <ul>
-         <h3>Basics</h3>
-         <li>External "no results"</li>
-         <li>Auto popup with url parameters</li>
-         <li>Add fixed Algolia links (low prio)</li>
-      </ul>
-      </div>
+      <p>Github repo: <a href="https://github.com/scienced/algolia-colect-middleware-js">algolia-Colect-middleware-js </a></p>
+      <p>CDN: <a href="https://www.jsdelivr.com/package/gh/scienced/algolia-colect-middleware-js"><img src="https://data.jsdelivr.com/v1/package/gh/scienced/algolia-colect-middleware-js/badge"></a></p>
+
+      <script language="javascript" type="text/javascript">
+   
+    function kk(){
+      var appid = document.getElementById('appid').value
+      var apikey = document.getElementById('apikey').value
+      var index = document.getElementById('index').value
+      
+      //console.log(appid + apikey + index);
+      var newUrl = `/?location=${index}&algoliaid=${appid}&algoliakey=${apikey}`;
+      console.log(newUrl)
+      window.location = newUrl;
+    }
+</script>
+
+
 
       <script type="module" src="./main.js"></script> 
 
@@ -53,13 +68,15 @@
 
          const PAGELOCATION = new URLSearchParams(window.location.search).get('location')
           const CUSTOMERLANGUAGE = new URLSearchParams(window.location.search).get('locale')
+          const ALGOLIAID =new URLSearchParams(window.location.search).get('algoliaid')
+          const ALGOLIAKEY = new URLSearchParams(window.location.search).get('algoliakey')
 
          var options = {
           customerCollection: `${PAGELOCATION}`,
           customerLanguage: "EN",
           customerId: "434783",
-          algoliaApplicationId: "0DFGSLJWH6",
-          algoliaApiKey: "8f7de09f5e2429d62da6af80c4f60078",
+          algoliaApplicationId: `${ALGOLIAID}`,
+          algoliaApiKey: `${ALGOLIAKEY}`,
           container: ".search_button"
          }
          window.options = options;
